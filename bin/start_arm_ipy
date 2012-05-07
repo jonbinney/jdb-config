@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+import sys, os, os.path, subprocess
+
+sage_root = os.path.expanduser('~/Source/sage-4.4.4')
+os.environ['PYTHONPATH'] = ':'.join([
+    os.path.join(sage_root, 'local/lib/python/site-packages'),
+    os.path.join(sage_root, 'local/lib/python2.6/site-packages'),
+    os.path.join(sage_root, 'local/lib/'),
+    '/usr/lib/python2.6/site-packages', # if a module isn't in sage, use the system installed version
+    '/usr/lib/python2.6/dist-packages'
+    ])
+
+# set the library path
+os.environ['LD_LIBRARY_PATH'] = os.path.join(sage_root, 'local/lib')
+os.environ['LIBRARY_PATH'] = os.path.join(sage_root, 'local/lib')
+
+# set the path so that we look for programs in the sage distribution first
+os.environ['PATH'] = ':'.join([
+    os.path.join(sage_root, 'local/bin'),
+    os.environ['PATH']
+    ])
+
+python_bin = os.path.join(sage_root, 'local/bin/python2.6')
+ipython_script = os.path.join(sage_root, 'local/bin/ipython')
+
+subprocess.call([python_bin, ipython_script, '-p', 'sh'])

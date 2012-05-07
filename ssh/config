@@ -1,0 +1,39 @@
+Host lab
+User binney
+Port 2424
+HostName cerberus.usc.edu
+
+Host lab-lan
+User binney
+Port 22
+HostName 192.168.0.136
+
+Host asimov
+User binney
+Port 22
+HostName asimov.usc.edu
+
+Host asimov-lan
+User binney
+Port 22
+HostName 192.168.0.2
+
+Host resl
+User embedded
+Port 22
+HostName asimov.usc.edu
+
+Host prj
+User jbinney
+Hostname prj
+ForwardX11 yes
+
+Host prl
+User jbinney
+Hostname prl
+ForwardX11 yes
+
+Host pro
+User jbinney
+Hostname pro
+ForwardX11 yes

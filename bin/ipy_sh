@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+import IPython.Shell
+
+# start ipython in shell mode
+ip = IPython.Shell.IPShell(argv=['-p', 'sh', '-nobanner'])
+ip.mainloop()

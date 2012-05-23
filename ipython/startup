@@ -163,18 +163,18 @@ def rosadd_func(self, arg):
     newpath = os.path.abspath(os.path.expanduser(arg))
     os.environ['ROS_PACKAGE_PATH'] = newpath + ':' + os.environ['ROS_PACKAGE_PATH']
 
-ip.expose_magic('rosset', rosset_func)
-ip.expose_magic('rosadd', rosadd_func)
+#ip.expose_magic('rosset', rosset_func)
+#ip.expose_magic('rosadd', rosadd_func)
 
 # setup package for using ipython with ROS
-try:
-    # default setting for ros environment
-    ip.magic('%rosset el all')
-    import ros
-    ros.initialize(ip)
-except ImportError, e:
-    print 'ROS does not appear to be installed'
-    print e
+#try:
+#    # default setting for ros environment
+#    ip.magic('%rosset el all')
+#    import ros
+#    ros.initialize(ip)
+#except ImportError, e:
+#    print 'ROS does not appear to be installed'
+#    print e
 
 try:
     import j.vc

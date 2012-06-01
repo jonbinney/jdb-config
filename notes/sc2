@@ -1,0 +1,4 @@
+# steps needed on ubuntu 12.04
+optirun bash
+echo 0|sudo tee /proc/sys/kernel/yama/ptrace_scope
+wine /media/FreeAgent\ Drive/StarCraft\ II/StarCraft\ II.exe 

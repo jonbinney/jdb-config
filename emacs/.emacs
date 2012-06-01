@@ -130,7 +130,6 @@
 
    '(column-number-mode t)
    '(line-number-mode t)
-   '(bar-cursor-mode t nil (bar-cursor));; requires emacs-goodies-el installed
    '(hippie-expand-try-functions-list (quote (try-expand-dabbrev )))
 
    '(ido-auto-merge-work-directories-length -1)

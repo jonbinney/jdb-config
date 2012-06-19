@@ -1,7 +1,7 @@
 function setws()
 {
     cd $HOME/ws/"$1"
-    source setup.bash
+    source setup.sh
 }
 
 function usepr2()

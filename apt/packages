@@ -18,6 +18,7 @@ swig
 python-setuptools
 python-mutagen
 terminator
+openvpn
 
 texlive
 texlive-publishers
@@ -34,3 +35,4 @@ pidgin
 vlc
 k3b
 freemind
+gimp

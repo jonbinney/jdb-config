@@ -1,4 +1,4 @@
-function setws()
+function ws()
 {
     cd $HOME/ws/"$1"
     source setup.sh

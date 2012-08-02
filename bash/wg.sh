@@ -10,3 +10,8 @@ function usepr2()
     export ROS_MASTER_URI=http://$PR2_NAME:11311
 }
 
+function wgvpn()
+{
+    cd $HOME/.dropbox_data/Dropbox/Documents/willow/jbinney_openvpn/openvpn/jbinney-1
+    sudo openvpn willow.conf
+}

@@ -35,7 +35,7 @@ if __name__ == '__main__':
     link_in_home('Config/vim', '.vim')
 
     # have ipython call my stuff on startup
-    # needs to be updated for new ipython config structure...
+    #  needs to be updated for new ipython config structure...
     #ipythonrc_filename = os.path.join(home_dir, '.ipython/ipythonrc')
     #text = 'execfile %s' % os.path.join(home_dir, 'Config/ipython/startup')
     #insert_text_in_file(ipythonrc_filename, text, '#')

@@ -93,10 +93,13 @@
 
 ;; ROS
 ; Tell emacs where to find the rosemacs sources
-(push "/u/jbinney/Config/emacs/rosemacs" load-path) 
+(push (expand-file-name "~/Config/emacs/rosemacs") load-path) 
 ;; Load the library and start it up
-(require 'rosemacs)
-(invoke-rosemacs)
+(condition-case nil
+    (progn
+      (require 'rosemacs)
+      (invoke-rosemacs))
+  (error (message "error when loading rosemacs")))
 
 ;; prefix for the rosemacs commands
 (global-set-key "\C-x\C-r" ros-keymap)

@@ -1,6 +1,7 @@
 function ws()
 {
     cd $HOME/ws/"$1"
+    export ROS_WS=$PWD
     source setup.sh
 }
 

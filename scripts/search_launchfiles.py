@@ -26,9 +26,9 @@ def expand_vars(s):
 def search_launchfiles(launchfile, depth=0, search_re=None):
     launchfile_str = open(launchfile).read()
     if search_re and search_re.search(launchfile_str):
-        print '!!' + ' '*depth*4, launchfile
+        print '!' + ' '*depth*8, launchfile
     else:
-        print ' '*depth*4, launchfile
+        print ' ' + ' '*depth*8, launchfile
 
     root = xml.etree.ElementTree.fromstring(launchfile_str)
     for el in root.findall('include'):

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys, os.path
+import sys, os, os.path, stat
 
 workspace_dir = sys.argv[1]
 
@@ -13,12 +13,12 @@ env_file.write(
 . %s
 
 if [ $# -eq 0 ] ; then
-    /bin/echo "Entering environment at /opt/ros/fuerte"
     $SHELL
-    /bin/echo "Exiting build environment at /opt/ros/fuerte"
 else
     exec "$@"
 fi
 ''' % setup_filename
 )
 env_file.close()
+
+os.chmod(env_filename, stat.S_IXUSR)

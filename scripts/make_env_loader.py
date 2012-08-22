@@ -5,6 +5,10 @@ workspace_dir = sys.argv[1]
 
 setup_filename = os.path.abspath(os.path.join(workspace_dir, 'setup.sh'))
 env_filename = os.path.join(workspace_dir, 'env.sh')
+
+# remove any existing env.sh
+os.unlink(env_filename)
+
 env_file = open(env_filename, 'w+')
 env_file.write(
 '''
@@ -21,4 +25,4 @@ fi
 )
 env_file.close()
 
-os.chmod(env_filename, stat.S_IXUSR)
+os.chmod(env_filename, os.stat(env_filename).st_mode | stat.S_IXUSR)

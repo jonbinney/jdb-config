@@ -39,3 +39,8 @@ function fuerte()
 {
     source /opt/ros/fuerte/setup.bash
 }
+
+function d()
+{
+    rosrun pr2_dashboard pr2_dashboard&
+}

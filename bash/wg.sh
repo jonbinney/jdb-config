@@ -1,3 +1,13 @@
+alias pri="usepr2 pri"
+alias prj="usepr2 prj"
+alias prk="usepr2 prk"
+alias prl="usepr2 prl"
+alias prm="usepr2 prm"
+alias prn="usepr2 prn"
+alias pro="usepr2 pro"
+alias prp="usepr2 prp"
+alias prq="usepr2 prq"
+
 function ws()
 {
     cd $HOME/ws/"$1"
@@ -19,16 +29,6 @@ function usepr2()
     export ROS_MASTER_URI=http://$PR2_NAME:11311
 }
 
-alias pri="usepr2 pri"
-alias prj="usepr2 prj"
-alias prk="usepr2 prk"
-alias prl="usepr2 prl"
-alias prm="usepr2 prm"
-alias prn="usepr2 prn"
-alias pro="usepr2 pro"
-alias prp="usepr2 prp"
-alias prq="usepr2 prq"
-
 function wgvpn()
 {
     cd $HOME/.dropbox_data/Dropbox/Documents/willow/jbinney_openvpn/openvpn/jbinney-1
@@ -42,5 +42,5 @@ function fuerte()
 
 function d()
 {
-    rosrun pr2_dashboard pr2_dashboard&
+    rosrun pr2_dashboard pr2_dashboard &>/dev/null&
 }

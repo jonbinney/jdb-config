@@ -8,6 +8,8 @@ alias pro="usepr2 pro"
 alias prp="usepr2 prp"
 alias prq="usepr2 prq"
 
+alias tfmon="rosrun tf tf_monitor"
+
 function ws()
 {
     cd $HOME/ws/"$1"

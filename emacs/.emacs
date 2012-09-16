@@ -150,7 +150,50 @@
    '(ido-use-url-at-point t)
 
    '(scroll-bar-mode (quote right))
-
  )
 
 (global-set-key (kbd "<backtab>") 'hippie-expand)
+
+;; CEDET
+;;   adapted from http://cxwangyi.wordpress.com/2010/08/21/using-cedet-with-emacs/
+;; (load-file "~/Source/cedet-1.1/common/cedet.el")
+
+;;(semantic-load-enable-excessive-code-helpers)
+;;(require 'semantic-ia)          ; names completion and display of tags
+;;(require 'semantic-gcc)         ; auto locate system include files
+
+(global-ede-mode 'nil)
+(semantic-mode 1)
+(require 'semantic-gcc)
+(global-semanticdb-minor-mode 1)
+(global-semantic-tag-folding-mode 1)
+(semantic-load-enable-excessive-code-helpers)
+
+(defun my-cedet-hook ()
+  (local-set-key [(control return)] 'semantic-ia-complete-symbol)
+  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
+  (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
+  (local-set-key "\C-c=" 'semantic-decoration-include-visit)
+  (local-set-key "\C-cj" 'semantic-ia-fast-jump)
+  (local-set-key "\C-cq" 'semantic-ia-show-doc)
+  (local-set-key "\C-cs" 'semantic-ia-show-summary)
+  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
+  (local-set-key "\C-c+" 'semantic-tag-folding-show-block)
+  (local-set-key "\C-c-" 'semantic-tag-folding-fold-block)
+  (local-set-key "\C-c\C-c+" 'semantic-tag-folding-show-all)
+  (local-set-key "\C-c\C-c-" 'semantic-tag-folding-fold-all)
+  )
+(add-hook 'c-mode-common-hook 'my-cedet-hook)
+
+;; gnu global support
+;;(semanticdb-enable-gnu-global-databases 'c-mode t)
+;;(semanticdb-enable-gnu-global-databases 'c++-mode t)
+
+;; ctags
+;;(require 'semanticdb-ectag)
+;; (semantic-load-enable-primary-ectags-support)
+
+;; ecb
+;;(add-to-list 'load-path "~/Source/ecb")
+;;(require 'ecb)
+;;(require 'ecb-autoloads)

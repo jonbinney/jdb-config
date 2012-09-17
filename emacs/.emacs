@@ -4,6 +4,59 @@
 ;; add my elisp folder to load-path
 (setq load-path (append load-path (list "~/Config/emacs"))) 
 
+;; Load CEDET.
+;; See cedet/common/cedet.info for configuration details.
+;; IMPORTANT: For Emacs >= 23.2, you must place this *before* any
+;; CEDET component (including EIEIO) gets activated by another 
+;; package (Gnus, auth-source, ...).
+(load-file "~/Source/cedet/lisp/cedet/cedet.el")
+(global-ede-mode t)
+
+;; Add further minor-modes to be enabled by semantic-mode.
+;; See doc-string of `semantic-default-submodes' for other things
+;; you can use here.
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
+(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
+
+;; Enable Semantic
+(semantic-mode 1)
+
+;; Enable EDE (Project Management) features
+(global-ede-mode 1)
+
+;;(semantic-load-enable-excessive-code-helpers)
+;;(global-semantic-tag-folding-mode 1)  ; not included in current cedet??
+(global-semanticdb-minor-mode 1)
+
+;;(require 'semantic-ia)
+
+;; ecb
+;;(add-to-list 'load-path "~/Source/ecb-2.40/")
+;;(require 'ecb)
+
+(defun my-cedet-hook ()
+  (local-set-key [(control return)] 'semantic-ia-complete-symbol)
+  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
+  (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
+  (local-set-key "\C-c=" 'semantic-decoration-include-visit)
+  (local-set-key "\C-cj" 'semantic-ia-fast-jump)
+  (local-set-key "\C-cq" 'semantic-ia-show-doc)
+  (local-set-key "\C-cs" 'semantic-ia-show-summary)
+  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
+  (local-set-key "\C-c+" 'semantic-tag-folding-show-block)
+  (local-set-key "\C-c-" 'semantic-tag-folding-fold-block)
+  (local-set-key "\C-c\C-c+" 'semantic-tag-folding-show-all)
+  (local-set-key "\C-c\C-c-" 'semantic-tag-folding-fold-all)
+  )
+(add-hook 'c-mode-common-hook 'my-cedet-hook)
+
+(global-set-key (kbd "C-x <up>") 'windmove-up)
+(global-set-key (kbd "C-x <down>") 'windmove-down)
+(global-set-key (kbd "C-x <right>") 'windmove-right)
+(global-set-key (kbd "C-x <left>") 'windmove-left)
+
+
 ;; Remember recently opened files
 (require 'recentf)
 (recentf-mode 1)
@@ -11,33 +64,12 @@
 (setq recentf-exclude (append recentf-exclude '(".ftp:.*" ".sudo:.*")))
 (setq recentf-keep '(file-remote-p file-readable-p))
 
-(condition-case nil
-    (progn
-      (require 'smex)
-      ;;smex replaces M-x with IDO enhancements
-      (setq smex-save-file "~/.smex.save")
-
-      (smex-initialize)
-      (global-set-key (kbd "M-x") 'smex)
-      (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-      (global-set-key (kbd "C-c M-x") 'smex-update-and-run)
-      ;; This is your old M-x.
-      (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
-  (error (message "error when loading smex")))
-
-(load "light-symbol-mode.el")
-(add-hook 'python-mode-hook (lambda () (light-symbol-mode)))
-(autoload 'light-symbol-mode "light symbol mode"
-  "highlight code."
-  t)
-
 ;;; disable the menu bar, scroll bar, and toolbar
 ;;(menu-bar-mode -1)
 ;;(toggle-scroll-bar -1)
 ;;(tool-bar-mode -1)
 
 ;;; key bindings
-(global-set-key "\M-g" 'goto-line)
 (global-set-key "\M-s" 'shell)
 (global-set-key "\M--" 'comment-dwim)
 (global-set-key "\M-n" 'next-error)
@@ -68,12 +100,9 @@
 (setq auto-save-default nil)
 
 ;; python
-;;(require 'ipython)
 (setq-default py-indent-offset 4)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-;;(setq ipython-command "/usr/bin/ipython")
-;;(require 'ipython)
 
 ; will allow you to type just "y" instead of "yes" when you exit.
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -86,10 +115,6 @@
 (require 'cc-mode)
 (c-set-offset 'arglist-intro 2)
 (set-variable (quote c-basic-offset) 2)
-
-;; make emacs use the clipboard
-;;(setq x-select-enable-clipboard t)
-;;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 ;; ROS
 ; Tell emacs where to find the rosemacs sources
@@ -114,86 +139,13 @@
 
 (setq inhibit-startup-message t)
 
-;; the code below allows emacs to scroll slowly when using the mouse wheel,
-;; or when reaching the end of buffer with point
-(defun smooth-scroll (increment)
-  (scroll-up increment) (sit-for 0.05)
-   (scroll-up increment) (sit-for 0.02)
-   (scroll-up increment) (sit-for 0.02)
-   (scroll-up increment) (sit-for 0.05)
-   (scroll-up increment) (sit-for 0.06)
-   (scroll-up increment))
- (global-set-key [(mouse-5)] '(lambda () (interactive) (smooth-scroll 1)))
- (global-set-key [(mouse-4)] '(lambda () (interactive) (smooth-scroll -1)))
 
-(custom-set-variables
-   '(recentf-menu-filter (quote recentf-show-basenames))
-   '(recentf-save-file "~/.recentf")
-   '(recentf-show-file-shortcuts-flag nil)
 
-   '(column-number-mode t)
-   '(line-number-mode t)
-   '(hippie-expand-try-functions-list (quote (try-expand-dabbrev )))
 
-   '(ido-auto-merge-work-directories-length -1)
-   '(ido-case-fold t)
-   '(ido-confirm-unique-completion nil)
-   '(ido-create-new-buffer (quote alway))
-   '(ido-enable-flex-matching t)
-   '(ido-everywhere t)
-   '(ido-ignore-buffers (quote ("\\*ros[a-zA-Z\\D]*" "\\*slime-events\\*"
- "\\*slime-compilation\\*" "\\*Ibuffer\\*" "\\*inferior-lisp\\*" "\\` ")))
-   '(ido-max-work-file-list 30)
-   '(ido-mode (quote both) nil (ido))
-   '(ido-save-directory-list-file "~/.emacs.d/.ido.last")
-   '(ido-use-filename-at-point (quote guess))
-   '(ido-use-url-at-point t)
-
-   '(scroll-bar-mode (quote right))
- )
-
-(global-set-key (kbd "<backtab>") 'hippie-expand)
-
-;; CEDET
-;;   adapted from http://cxwangyi.wordpress.com/2010/08/21/using-cedet-with-emacs/
-;; (load-file "~/Source/cedet-1.1/common/cedet.el")
-
-;;(semantic-load-enable-excessive-code-helpers)
-;;(require 'semantic-ia)          ; names completion and display of tags
-;;(require 'semantic-gcc)         ; auto locate system include files
-
-(global-ede-mode 'nil)
-(semantic-mode 1)
-(require 'semantic-gcc)
-(global-semanticdb-minor-mode 1)
-(global-semantic-tag-folding-mode 1)
-(semantic-load-enable-excessive-code-helpers)
-
-(defun my-cedet-hook ()
-  (local-set-key [(control return)] 'semantic-ia-complete-symbol)
-  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
-  (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
-  (local-set-key "\C-c=" 'semantic-decoration-include-visit)
-  (local-set-key "\C-cj" 'semantic-ia-fast-jump)
-  (local-set-key "\C-cq" 'semantic-ia-show-doc)
-  (local-set-key "\C-cs" 'semantic-ia-show-summary)
-  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
-  (local-set-key "\C-c+" 'semantic-tag-folding-show-block)
-  (local-set-key "\C-c-" 'semantic-tag-folding-fold-block)
-  (local-set-key "\C-c\C-c+" 'semantic-tag-folding-show-all)
-  (local-set-key "\C-c\C-c-" 'semantic-tag-folding-fold-all)
-  )
-(add-hook 'c-mode-common-hook 'my-cedet-hook)
-
-;; gnu global support
-;;(semanticdb-enable-gnu-global-databases 'c-mode t)
-;;(semanticdb-enable-gnu-global-databases 'c++-mode t)
-
-;; ctags
-;;(require 'semanticdb-ectag)
-;; (semantic-load-enable-primary-ectags-support)
-
-;; ecb
-;;(add-to-list 'load-path "~/Source/ecb")
-;;(require 'ecb)
-;;(require 'ecb-autoloads)
+(ede-cpp-root-project "robot_self_filter"
+                :name "Robot self filter"
+                :file "~/ws/moveit/moveit_perception/robot_self_filter/CMakeLists.txt"
+                :include-path '("/"
+                                "/include"
+                                "/src"
+                               ))

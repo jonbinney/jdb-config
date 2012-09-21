@@ -12,7 +12,11 @@ def expand_vars_cb(m):
         pkg_name = var_arg
         repl = roslib.packages.get_pkg_dir(pkg_name)
     elif var_type == 'env':
-        repl = os.environ[var_arg]
+        try:
+            repl = os.environ[var_arg]
+        except KeyError:
+            print 'unset environment variable: %s' % var_arg
+            repl = var_arg
     else:
         print 'unknown variable type:', m.groups()
         return ''
@@ -24,7 +28,11 @@ def expand_vars(s):
     
 
 def search_launchfiles(launchfile, depth=0, search_re=None):
-    launchfile_str = open(launchfile).read()
+    try:
+        launchfile_str = open(launchfile).read()
+    except:
+        print 'Unable to open launchfile: %s' % launchfile
+        return
     if search_re and search_re.search(launchfile_str):
         print '!' + ' '*depth*8, launchfile
     else:

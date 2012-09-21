@@ -6,6 +6,9 @@ export EDITOR=emacs
 
 PS1="\n\[\033[32m\][\w]\[\033[0m\]\n\[\033[1;36m\]\u@\[\033[32m\]\h\[\033[1;33m\]-> \[\033[0m\]"
 
-source $BASH_LOCAL_DIR/wg.sh
+ROS_BASHRC=$HOME/ws/ros-shell-utils/bashrc/bashrc.sh
+if [ -f $ROS_BASHRC ]; then
+  source $ROS_BASHRC
+fi;
 
 export PATH=$HOME/Config/scripts:$PATH

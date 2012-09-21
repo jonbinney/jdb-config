@@ -1,0 +1,6 @@
+[submodule "emacs/js3-mode"]
+	path = emacs/js3-mode
+	url = https://github.com/thomblake/js3-mode.git
+[submodule "emacs/cedet"]
+	path = emacs/cedet
+	url = git://git.randomsample.de/cedet.git

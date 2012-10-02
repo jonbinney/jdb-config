@@ -15,19 +15,19 @@
 ;; Add further minor-modes to be enabled by semantic-mode.
 ;; See doc-string of `semantic-default-submodes' for other things
 ;; you can use here.
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
-(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
+;;(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
+;;(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
+;;(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
 
 ;; Enable Semantic
-(semantic-mode 1)
+;;(semantic-mode 1)
 
 ;; Enable EDE (Project Management) features
-(global-ede-mode 1)
+;;(global-ede-mode 1)
 
 ;;(semantic-load-enable-excessive-code-helpers)
 ;;(global-semantic-tag-folding-mode 1)  ; not included in current cedet??
-(global-semanticdb-minor-mode 1)
+;;(global-semanticdb-minor-mode 1)
 
 ;;(require 'semantic-ia)
 
@@ -35,26 +35,26 @@
 ;;(add-to-list 'load-path "~/Source/ecb-2.40/")
 ;;(require 'ecb)
 
-(defun my-cedet-hook ()
-  (local-set-key [(control return)] 'semantic-ia-complete-symbol)
-  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
-  (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
-  (local-set-key "\C-c=" 'semantic-decoration-include-visit)
-  (local-set-key "\C-cj" 'semantic-ia-fast-jump)
-  (local-set-key "\C-cq" 'semantic-ia-show-doc)
-  (local-set-key "\C-cs" 'semantic-ia-show-summary)
-  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
-  (local-set-key "\C-c+" 'semantic-tag-folding-show-block)
-  (local-set-key "\C-c-" 'semantic-tag-folding-fold-block)
-  (local-set-key "\C-c\C-c+" 'semantic-tag-folding-show-all)
-  (local-set-key "\C-c\C-c-" 'semantic-tag-folding-fold-all)
-  )
-(add-hook 'c-mode-common-hook 'my-cedet-hook)
+;(defun my-cedet-hook ()
+;  (local-set-key [(control return)] 'semantic-ia-complete-symbol)
+;  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
+;  (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
+;  (local-set-key "\C-c=" 'semantic-decoration-include-visit)
+;  (local-set-key "\C-cj" 'semantic-ia-fast-jump)
+;  (local-set-key "\C-cq" 'semantic-ia-show-doc)
+;  (local-set-key "\C-cs" 'semantic-ia-show-summary)
+;  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
+ ; (local-set-key "\C-c+" 'semantic-tag-folding-show-block)
+ ; (local-set-key "\C-c-" 'semantic-tag-folding-fold-block)
+ ; (local-set-key "\C-c\C-c+" 'semantic-tag-folding-show-all)
+ ; (local-set-key "\C-c\C-c-" 'semantic-tag-folding-fold-all)
+ ; )
+;(add-hook 'c-mode-common-hook 'my-cedet-hook)
 
-(global-set-key (kbd "C-x <up>") 'windmove-up)
-(global-set-key (kbd "C-x <down>") 'windmove-down)
-(global-set-key (kbd "C-x <right>") 'windmove-right)
-(global-set-key (kbd "C-x <left>") 'windmove-left)
+;(global-set-key (kbd "C-x <up>") 'windmove-up)
+;(global-set-key (kbd "C-x <down>") 'windmove-down)
+;(global-set-key (kbd "C-x <right>") 'windmove-right)
+;(global-set-key (kbd "C-x <left>") 'windmove-left)
 
 
 ;; Remember recently opened files
@@ -138,14 +138,3 @@
 (show-paren-mode 1)
 
 (setq inhibit-startup-message t)
-
-
-
-
-(ede-cpp-root-project "robot_self_filter"
-                :name "Robot self filter"
-                :file "~/ws/moveit/moveit_perception/robot_self_filter/CMakeLists.txt"
-                :include-path '("/"
-                                "/include"
-                                "/src"
-                               ))

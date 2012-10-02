@@ -9,8 +9,8 @@
 ;; IMPORTANT: For Emacs >= 23.2, you must place this *before* any
 ;; CEDET component (including EIEIO) gets activated by another 
 ;; package (Gnus, auth-source, ...).
-(load-file "~/Source/cedet/lisp/cedet/cedet.el")
-(global-ede-mode t)
+;(load-file "~/Source/cedet/lisp/cedet/cedet.el")
+;(global-ede-mode t)
 
 ;; Add further minor-modes to be enabled by semantic-mode.
 ;; See doc-string of `semantic-default-submodes' for other things

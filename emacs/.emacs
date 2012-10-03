@@ -10,26 +10,25 @@
 ;; IMPORTANT: For Emacs >= 23.2, you must place this *before* any
 ;; CEDET component (including EIEIO) gets activated by another 
 ;; package (Gnus, auth-source, ...).
-;;(load-file "cedet/cedet.el")
-(require 'cedet)
-(global-ede-mode t)
+;(load-file "~/Source/cedet/lisp/cedet/cedet.el")
+;(global-ede-mode t)
 
 ;; Add further minor-modes to be enabled by semantic-mode.
 ;; See doc-string of `semantic-default-submodes' for other things
 ;; you can use here.
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
-(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
+;;(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
+;;(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
+;;(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
 
 ;; Enable Semantic
-(semantic-mode 1)
+;;(semantic-mode 1)
 
 ;; Enable EDE (Project Management) features
-(global-ede-mode 1)
+;;(global-ede-mode 1)
 
 ;;(semantic-load-enable-excessive-code-helpers)
 ;;(global-semantic-tag-folding-mode 1)  ; not included in current cedet??
-(global-semanticdb-minor-mode 1)
+;;(global-semanticdb-minor-mode 1)
 
 ;;(require 'semantic-ia)
 
@@ -37,26 +36,26 @@
 ;;(add-to-list 'load-path "~/Source/ecb-2.40/")
 ;;(require 'ecb)
 
-(defun my-cedet-hook ()
-  (local-set-key [(control return)] 'semantic-ia-complete-symbol)
-  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
-  (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
-  (local-set-key "\C-c=" 'semantic-decoration-include-visit)
-  (local-set-key "\C-cj" 'semantic-ia-fast-jump)
-  (local-set-key "\C-cq" 'semantic-ia-show-doc)
-  (local-set-key "\C-cs" 'semantic-ia-show-summary)
-  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
-  (local-set-key "\C-c+" 'semantic-tag-folding-show-block)
-  (local-set-key "\C-c-" 'semantic-tag-folding-fold-block)
-  (local-set-key "\C-c\C-c+" 'semantic-tag-folding-show-all)
-  (local-set-key "\C-c\C-c-" 'semantic-tag-folding-fold-all)
-  )
-(add-hook 'c-mode-common-hook 'my-cedet-hook)
+;(defun my-cedet-hook ()
+;  (local-set-key [(control return)] 'semantic-ia-complete-symbol)
+;  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
+;  (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
+;  (local-set-key "\C-c=" 'semantic-decoration-include-visit)
+;  (local-set-key "\C-cj" 'semantic-ia-fast-jump)
+;  (local-set-key "\C-cq" 'semantic-ia-show-doc)
+;  (local-set-key "\C-cs" 'semantic-ia-show-summary)
+;  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
+ ; (local-set-key "\C-c+" 'semantic-tag-folding-show-block)
+ ; (local-set-key "\C-c-" 'semantic-tag-folding-fold-block)
+ ; (local-set-key "\C-c\C-c+" 'semantic-tag-folding-show-all)
+ ; (local-set-key "\C-c\C-c-" 'semantic-tag-folding-fold-all)
+ ; )
+;(add-hook 'c-mode-common-hook 'my-cedet-hook)
 
-(global-set-key (kbd "C-x <up>") 'windmove-up)
-(global-set-key (kbd "C-x <down>") 'windmove-down)
-(global-set-key (kbd "C-x <right>") 'windmove-right)
-(global-set-key (kbd "C-x <left>") 'windmove-left)
+;(global-set-key (kbd "C-x <up>") 'windmove-up)
+;(global-set-key (kbd "C-x <down>") 'windmove-down)
+;(global-set-key (kbd "C-x <right>") 'windmove-right)
+;(global-set-key (kbd "C-x <left>") 'windmove-left)
 
 
 ;; Remember recently opened files
@@ -140,26 +139,3 @@
 (show-paren-mode 1)
 
 (setq inhibit-startup-message t)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Javascript
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;Add the following custom-set-variables to use 'lazy' modes
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(js3-lazy-commas t)
- '(js3-lazy-operators t)
- '(js3-lazy-dots t)
- '(js3-expr-indent-offset 2)
- '(js3-paren-indent-offset 2)
- '(js3-square-indent-offset 2)
- '(js3-curly-indent-offset 2)
-)
-
-(autoload 'js3-mode "js3" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js3-mode))

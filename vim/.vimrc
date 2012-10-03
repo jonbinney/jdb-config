@@ -26,3 +26,8 @@ set guioptions-=m
 
 " Remove toolbar from gvim
 set guioptions-=T
+
+" turn syntax highlighting on
+set t_Co=256
+syntax on
+colorscheme wombat256mod

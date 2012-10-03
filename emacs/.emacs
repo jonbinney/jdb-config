@@ -3,13 +3,15 @@
 
 ;; add my elisp folder to load-path
 (setq load-path (append load-path (list "~/Config/emacs"))) 
+(setq load-path (append load-path (list "~/Config/emacs/js3-mode"))) 
 
 ;; Load CEDET.
 ;; See cedet/common/cedet.info for configuration details.
 ;; IMPORTANT: For Emacs >= 23.2, you must place this *before* any
 ;; CEDET component (including EIEIO) gets activated by another 
 ;; package (Gnus, auth-source, ...).
-(load-file "~/Source/cedet/lisp/cedet/cedet.el")
+;;(load-file "cedet/cedet.el")
+(require 'cedet)
 (global-ede-mode t)
 
 ;; Add further minor-modes to be enabled by semantic-mode.
@@ -140,12 +142,24 @@
 (setq inhibit-startup-message t)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Javascript
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;;Add the following custom-set-variables to use 'lazy' modes
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(js3-lazy-commas t)
+ '(js3-lazy-operators t)
+ '(js3-lazy-dots t)
+ '(js3-expr-indent-offset 2)
+ '(js3-paren-indent-offset 2)
+ '(js3-square-indent-offset 2)
+ '(js3-curly-indent-offset 2)
+)
 
-(ede-cpp-root-project "robot_self_filter"
-                :name "Robot self filter"
-                :file "~/ws/moveit/moveit_perception/robot_self_filter/CMakeLists.txt"
-                :include-path '("/"
-                                "/include"
-                                "/src"
-                               ))
+(autoload 'js3-mode "js3" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js3-mode))

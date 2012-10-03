@@ -2,7 +2,7 @@ export BASH_LOCAL_DIR=$HOME/Config/bash
 
 alias emacs='emacs -nw'
 
-export EDITOR=emacs
+export EDITOR=vim
 
 PS1="\n\[\033[32m\][\w]\[\033[0m\]\n\[\033[1;36m\]\u@\[\033[32m\]\h\[\033[1;33m\]-> \[\033[0m\]"
 

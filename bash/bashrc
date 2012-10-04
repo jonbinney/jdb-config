@@ -15,3 +15,10 @@ export PATH=$HOME/Config/scripts:$PATH
 
 # use vim keybindings in bash
 set -o vi
+
+# if this variable isn't set properly, tmux won't use 256 colors
+[ -z "$TMUX" ] && export TERM=xterm-256color
+
+# make caps lock an additional escape
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+

@@ -1,0 +1,11 @@
+
+[roxterm profile]
+font=Monospace 11
+width=120
+height=50
+audible_bell=0
+scrollbar_pos=0
+scroll_on_keystroke=1
+scrollback_lines=100000
+hide_menubar=1
+always_show_tabs=0

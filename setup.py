@@ -33,6 +33,7 @@ if __name__ == '__main__':
     link_in_home('Config/screen/.screenrc', '.screenrc')
     link_in_home('Config/vim/.vimrc', '.vimrc')
     link_in_home('Config/vim', '.vim')
+    link_in_home('Config/tmux/tmux.conf', '.tmux.conf')
 
     # have ipython call my stuff on startup
     #  needs to be updated for new ipython config structure...

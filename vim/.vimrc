@@ -34,3 +34,7 @@ set number
 set t_Co=256
 syntax on
 colorscheme wombat256mod
+
+" treat ROS launch files as xml
+au BufNewFile,BufRead *.launch setfiletype xml
+

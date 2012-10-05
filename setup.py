@@ -1,12 +1,21 @@
 import os, os.path, re, shutil, time
 
+config_dir = os.path.split(os.path.realpath(__file__))[0]
+
 def link_in_home(from_file, to_file):
+    from_file = os.path.join(config_dir, from_file)
+    to_file = os.path.join(home_dir, to_file)
+
     try:
-        from_file = os.path.join(home_dir, from_file)
-        to_file = os.path.join(home_dir, to_file)
+        # delete any existing file
+        if os.path.lexists(to_file):
+            os.unlink(to_file)
+
         os.symlink(from_file, to_file)
-    except OSError:
+    except OSError as e:
         print to_file, 'cannot be replaced'
+        print e
+    print 'Linked %s to %s' % (from_file, to_file)
 
 def insert_text_in_file(filename, text, comment_char):
     try:
@@ -17,7 +26,7 @@ def insert_text_in_file(filename, text, comment_char):
             f = open(filename, 'a')
             print >> f, ''
             print >> f, comment_char * 78
-            print >> f, '# Added by my setup script - JDB'
+            print >> f, '%s Added by my setup script - JDB' % comment_char
             print >> f, text
             print >> f, comment_char * 78
             f.close()
@@ -26,15 +35,17 @@ def insert_text_in_file(filename, text, comment_char):
 
 if __name__ == '__main__':
     home_dir = os.path.expanduser('~')
+    print 'Home dir: %s' % home_dir
+    print 'Config dir: %s' % config_dir
     
     # make symlinks in home directory to config files
-    link_in_home('Config/emacs/.emacs', '.emacs')
-    link_in_home('Config/ssh/config', '.ssh/config')
-    link_in_home('Config/screen/.screenrc', '.screenrc')
-    link_in_home('Config/vim/.vimrc', '.vimrc')
-    link_in_home('Config/vim', '.vim')
-    link_in_home('Config/tmux/tmux.conf', '.tmux.conf')
-    link_in_home('Config/roxterm', '.config/roxterm.sourceforge.net')
+    link_in_home('emacs/.emacs', '.emacs')
+    link_in_home('ssh/config', '.ssh/config')
+    link_in_home('screen/.screenrc', '.screenrc')
+    link_in_home('vim/.vimrc', '.vimrc')
+    link_in_home('vim', '.vim')
+    link_in_home('tmux/tmux.conf', '.tmux.conf')
+    link_in_home('roxterm', '.config/roxterm.sourceforge.net')
 
     # have ipython call my stuff on startup
     #  needs to be updated for new ipython config structure...

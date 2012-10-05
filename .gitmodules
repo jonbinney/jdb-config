@@ -4,3 +4,6 @@
 [submodule "emacs/cedet"]
 	path = emacs/cedet
 	url = git://git.randomsample.de/cedet.git
+[submodule "vim/bundle/command-t"]
+	path = vim/bundle/command-t
+	url = git://git.wincent.com/command-t.git

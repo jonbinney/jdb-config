@@ -35,6 +35,34 @@ set t_Co=256
 syntax on
 colorscheme wombat256mod
 
+" hide buffers; don't close them. this way we don't have to save
+" a buffer before switching to another one.
+set hidden
+
+" show tabs, except in xml files
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+autocmd filetype html,xml set listchars-=tab:>.
+
+" enables a paste mode in which autoindent is turned off
+set pastetoggle=<F2>
+
+" Use Q for formatting the current paragraph (or selection)
+vmap Q gq
+nmap Q gqap
+
+" use ,/ combo to clear the highlighted search
+nmap <silent> ,/ :nohlsearch<CR>
+
+" save using sudo
+cmap w!! w !sudo tee % >/dev/null
+
 " treat ROS launch files as xml
+cmap w!! w !sudo tee % >/dev/null
 au BufNewFile,BufRead *.launch setfiletype xml
+cmap w!! w !sudo tee % >/dev/null
+
+call pathogen#infect()
+cmap w!! w !sudo tee % >/dev/null
+call pathogen#helptags()
 

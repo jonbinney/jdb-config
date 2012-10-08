@@ -1,3 +1,5 @@
+let mapleader = ","
+
 set so=7 "display some rows below the cursor when scrolling
 
 set nobackup

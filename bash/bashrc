@@ -19,9 +19,6 @@ export PATH=$HOME/Config/scripts:$PATH
 # if this variable isn't set properly, tmux won't use 256 colors
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
-# make caps lock an additional escape
-[ -n "$DISPLAY" ] && xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-
 # if available, use the version of vim from vim-nox package, since it is compiled
 # with ruby support, which is needed for command-t
 VIM_NOX=/usr/bin/vim.nox

@@ -119,7 +119,7 @@
 
 ;; ROS
 ; Tell emacs where to find the rosemacs sources
-(push (expand-file-name "~/Config/emacs/rosemacs") load-path) 
+(push (expand-file-name "~/config/emacs/rosemacs") load-path) 
 ;; Load the library and start it up
 (condition-case nil
     (progn

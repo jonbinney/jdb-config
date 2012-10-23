@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+kill -9 `ps ax|grep -i starc|grep -v grep | cut -f1 -d' '|xargs`

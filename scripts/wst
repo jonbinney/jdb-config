@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+import sys, os.path, subprocess, re, argparse
+import yaml
+
+def find_ws_root_dir(current_dir):
+    while True:
+        if os.path.exists(os.path.join(current_dir,  '.rosinstall')):
+            return current_dir
+        elif current_dir == '/':
+            return None
+        current_dir = os.path.abspath(os.path.join(current_dir, os.path.pardir))
+
+# TODO more robust command line parsing
+parser = argparse.ArgumentParser(description='Run commands on multiple working directories.')
+parser.add_argument('command', nargs='+', help='command to run on each directory')
+parser.add_argument('-f', dest='filter_str', type=str, help='regular expression to filter directories')
+args = parser.parse_args()
+if args.filter_str is None:
+    dir_re = None
+else:
+    dir_re = re.compile(args.filter_str)
+
+print 'Running "%s" for directories matching "%s"\n' % (' '.join(args.command), args.filter_str)
+
+# TODO look in higher level directories to find rosinstall file
+initial_dir = os.getcwd()
+ws_dir = find_ws_root_dir(initial_dir)
+if ws_dir is None:
+    print 'No .rosinstall file found in any parent directory'
+    sys.exit(-1)
+rosinstall_config = yaml.load(open(os.path.join(ws_dir, '.rosinstall')))
+
+for rosinstall_entry in rosinstall_config:
+    if 'git' in rosinstall_entry:
+        entry_config = rosinstall_entry['git']
+        entry_dir = os.path.join(ws_dir, entry_config['local-name'])
+        rel_entry_dir = os.path.relpath(entry_dir, ws_dir)
+
+        if dir_re is None or dir_re.search(rel_entry_dir):
+            print '# %s' % rel_entry_dir
+            output = subprocess.check_output(args.command, cwd=entry_dir)
+            print output

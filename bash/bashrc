@@ -11,7 +11,7 @@ if [ -f $ROS_BASHRC ]; then
   source $ROS_BASHRC
 fi;
 
-export PATH=$HOME/Config/scripts:$PATH
+export PATH=$HOME/config/scripts:$PATH
 
 # use vim keybindings in bash
 # set -o vi

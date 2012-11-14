@@ -10,33 +10,92 @@ def find_ws_root_dir(current_dir):
             return None
         current_dir = os.path.abspath(os.path.join(current_dir, os.path.pardir))
 
-# TODO more robust command line parsing
-parser = argparse.ArgumentParser(description='Run commands on multiple working directories.')
-parser.add_argument('command', nargs='+', help='command to run on each directory')
-parser.add_argument('-f', dest='filter_str', type=str, help='regular expression to filter directories')
-args = parser.parse_args()
-if args.filter_str is None:
-    dir_re = None
-else:
-    dir_re = re.compile(args.filter_str)
+def get_remotes(git_dir):
+    remote_names = subprocess.check_output(['git', 'remote'], cwd=git_dir).split()
+    remotes = {}
+    for remote_name in remote_names:
+        remotes[remote_name] = {}
+        for line in subprocess.check_output(['git', 'remote', 'show', remote_name], cwd=git_dir).split('\n'):
+            tokens = [s.lower() for s in line.strip().split()]
+            if len(tokens) >= 2 and tokens[0] == 'fetch':
+                remotes[remote_name]['fetch_url'] = tokens[2]
+            elif len(tokens) >= 2 and tokens[0] == 'push':
+                remotes[remote_name]['push_url'] = tokens[2]
+    return remotes
 
-print 'Running "%s" for directories matching "%s"\n' % (' '.join(args.command), args.filter_str)
 
-# TODO look in higher level directories to find rosinstall file
-initial_dir = os.getcwd()
-ws_dir = find_ws_root_dir(initial_dir)
-if ws_dir is None:
-    print 'No .rosinstall file found in any parent directory'
-    sys.exit(-1)
-rosinstall_config = yaml.load(open(os.path.join(ws_dir, '.rosinstall')))
+def setup_remotes(git_dir):
+    remotes = get_remotes(git_dir)
 
-for rosinstall_entry in rosinstall_config:
-    if 'git' in rosinstall_entry:
-        entry_config = rosinstall_entry['git']
-        entry_dir = os.path.join(ws_dir, entry_config['local-name'])
-        rel_entry_dir = os.path.relpath(entry_dir, ws_dir)
+    # rename origin to main
+    if 'origin' in remotes:
+        print 'Renaming "origin" remote to "main"'
+        subprocess.check_output('git remote rename origin main'.split(), cwd=git_dir)
 
-        if dir_re is None or dir_re.search(rel_entry_dir):
-            print '# %s' % rel_entry_dir
-            output = subprocess.check_output(args.command, cwd=entry_dir)
-            print output
+    # make sure a main remote exists
+    remotes = get_remotes(git_dir)
+    if not 'main' in remotes:
+        print 'No main in remotes, cannot setup remotes'
+        return
+
+    # parse out the name of the repo
+    m = re.match('git@github.com:(.+)\/.+.git', remotes['main']['fetch_url'])
+    if m is None:
+        print 'Cannot parse main remote: %s' % remotes['main']['fetch_url']
+    repo_name = m.groups()[0]
+    fork_url = re.sub(repo_name, config['github_username'], remotes['main']['fetch_url'])
+
+    # add a remote for the fork
+    fork_name = config['github_username']
+    if fork_name in remotes:
+        print 'Fork %s already exists' % fork_name
+    else:
+        print 'Adding remote %s for %s' % (config['github_username'], fork_url)
+        subprocess.check_output(['git', 'remote', 'add', config['github_username'], fork_url], cwd=git_dir)
+
+def do_command(command, cwd):
+    '''
+    Run command with working directory cwd.
+    '''
+    if command[0] == 'github':
+        if command[1] == 'setup_remotes':
+            setup_remotes(cwd)
+    else:
+        output = subprocess.check_output(command, cwd=cwd)
+        print output
+
+# TODO pull this out into a config file
+config = {
+    'github_username' : 'jonbinney'
+}
+
+if __name__ == '__main__':
+    # TODO more robust command line parsing
+    parser = argparse.ArgumentParser(description='Run commands on multiple working directories.')
+    parser.add_argument('command', nargs='+', help='command to run on each directory')
+    parser.add_argument('-f', dest='filter_str', type=str, help='regular expression to filter directories')
+    args = parser.parse_args()
+    if args.filter_str is None:
+        dir_re = None
+    else:
+        dir_re = re.compile(args.filter_str)
+
+    print 'Running "%s" for directories matching "%s"\n' % (' '.join(args.command), args.filter_str)
+
+    # TODO look in higher level directories to find rosinstall file
+    initial_dir = os.getcwd()
+    ws_dir = find_ws_root_dir(initial_dir)
+    if ws_dir is None:
+        print 'No .rosinstall file found in any parent directory'
+        sys.exit(-1)
+    rosinstall_config = yaml.load(open(os.path.join(ws_dir, '.rosinstall')))
+
+    for rosinstall_entry in rosinstall_config:
+        if 'git' in rosinstall_entry:
+            entry_config = rosinstall_entry['git']
+            entry_dir = os.path.join(ws_dir, entry_config['local-name'])
+            rel_entry_dir = os.path.relpath(entry_dir, ws_dir)
+
+            if dir_re is None or dir_re.search(rel_entry_dir):
+                print '# %s' % rel_entry_dir
+                do_command(args.command, entry_dir)

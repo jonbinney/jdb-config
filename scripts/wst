@@ -61,7 +61,11 @@ def do_command(command, cwd):
         if command[1] == 'setup_remotes':
             setup_remotes(cwd)
     else:
-        output = subprocess.check_output(command, cwd=cwd)
+        try:
+            output = subprocess.check_output(command, cwd=cwd)
+        except:
+            print 'WST ERROR: Nonzero exit status'
+            return
         print output
 
 # TODO pull this out into a config file
@@ -70,32 +74,48 @@ config = {
 }
 
 if __name__ == '__main__':
-    # TODO more robust command line parsing
-    parser = argparse.ArgumentParser(description='Run commands on multiple working directories.')
-    parser.add_argument('command', nargs='+', help='command to run on each directory')
-    parser.add_argument('-f', dest='filter_str', type=str, help='regular expression to filter directories')
-    args = parser.parse_args()
-    if args.filter_str is None:
-        dir_re = None
-    else:
-        dir_re = re.compile(args.filter_str)
-
-    print 'Running "%s" for directories matching "%s"\n' % (' '.join(args.command), args.filter_str)
-
-    # TODO look in higher level directories to find rosinstall file
+    # look in higher level directories to find rosinstall file
     initial_dir = os.getcwd()
     ws_dir = find_ws_root_dir(initial_dir)
     if ws_dir is None:
         print 'No .rosinstall file found in any parent directory'
         sys.exit(-1)
     rosinstall_config = yaml.load(open(os.path.join(ws_dir, '.rosinstall')))
+    wst_config = yaml.load(open(os.path.join(ws_dir, '.wst')))
 
-    for rosinstall_entry in rosinstall_config:
-        if 'git' in rosinstall_entry:
-            entry_config = rosinstall_entry['git']
+    # we don't use argparse here because we want options at the end of the
+    # command to be passed through directly to some shell command, and not
+    # parsed as arguments to this script. argparse complains about unknown args.
+    args = sys.argv[1:]
+    filter_re = None
+    if len(args) >= 2 and args[0] == '-f':
+        filter_str = args[1]
+        filter_re = re.compile(filter_str)
+        filter_f = lambda e: filter_re.search(e['local-name'])
+        args = args[2:]
+    elif len(args) >= 2 and args[0] == '-g':
+        group_name = args[1]
+        filter_f = lambda e: e['git']['local-name'] in wst_config['groups'][group_name]
+        args = args[2:]
+    else:
+        filter_f = lambda e: True
+    command = args
+
+    # apply filters to select rosisntall entries
+    selected_entries = []
+    for entry in rosinstall_config:
+        if 'git' in entry and filter_f(entry):
+            selected_entries.append(entry)
+
+    if len(command) > 0:
+        print 'Running "%s"\n' % (' '.join(command),)
+
+    for entry in selected_entries:
+        print '\033[35m[ %s ]\033[0m' % entry['git']['local-name']
+        if len(command) > 0:
+            entry_config = entry['git']
             entry_dir = os.path.join(ws_dir, entry_config['local-name'])
             rel_entry_dir = os.path.relpath(entry_dir, ws_dir)
 
-            if dir_re is None or dir_re.search(rel_entry_dir):
-                print '# %s' % rel_entry_dir
-                do_command(args.command, entry_dir)
+            if filter_re is None or filter_re.search(rel_entry_dir):
+                do_command(command, entry_dir)

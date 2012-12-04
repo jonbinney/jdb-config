@@ -50,12 +50,12 @@ if __name__ == '__main__':
     # have ipython call my stuff on startup
     #  needs to be updated for new ipython config structure...
     #ipythonrc_filename = os.path.join(home_dir, '.ipython/ipythonrc')
-    #text = 'execfile %s' % os.path.join(home_dir, 'Config/ipython/startup')
+    #text = 'execfile %s' % os.path.join(home_dir, 'config/ipython/startup')
     #insert_text_in_file(ipythonrc_filename, text, '#')
 
     # have bash call my stuff on startup
     bashrc_filename = os.path.join(home_dir, '.bashrc')
-    text = 'source %s' % os.path.join(home_dir, 'Config/bash/bashrc')
+    text = 'source %s' % os.path.join(home_dir, 'config/bash/bashrc')
     insert_text_in_file(bashrc_filename, text, '#')
     
 

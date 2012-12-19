@@ -1,4 +1,4 @@
-export BASH_LOCAL_DIR=$HOME/Config/bash
+export BASH_LOCAL_DIR=$HOME/config/bash
 
 alias emacs='emacs -nw'
 

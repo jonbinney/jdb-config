@@ -7,6 +7,6 @@ function ssh_()
 
 function wgvpn()
 {
-    cd $HOME/.dropbox_data/Dropbox/Documents/willow/jbinney_openvpn/openvpn/jbinney-1
+    cd $DROPBOX_DIR/Documents/willow/jbinney_openvpn/openvpn/jbinney-1
     sudo openvpn willow.conf
 }

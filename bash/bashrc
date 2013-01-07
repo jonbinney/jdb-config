@@ -1,4 +1,5 @@
-export BASH_LOCAL_DIR=$HOME/Config/bash
+export BASH_LOCAL_DIR=$HOME/config/bash
+export DROPBOX_DIR=$HOME/Dropbox
 
 alias emacs='emacs -nw'
 
@@ -26,3 +27,4 @@ if [ -f ${VIM_NOX} ]; then
     alias vim=${VIM_NOX}
 fi;
 
+source $BASH_LOCAL_DIR/funcs.sh

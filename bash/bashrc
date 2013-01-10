@@ -1,6 +1,7 @@
 export BASH_LOCAL_DIR=$HOME/config/bash
 export DROPBOX_DIR=$HOME/Dropbox
 
+alias rebash="source $HOME/.bashrc"
 alias emacs='emacs -nw'
 
 export EDITOR=emacs

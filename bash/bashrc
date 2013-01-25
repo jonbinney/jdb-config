@@ -34,3 +34,6 @@ if [ -f ${VIM_NOX} ]; then
 fi;
 
 source $BASH_LOCAL_DIR/funcs.sh
+
+git config --global user.email "jbinney@willowgarage.com"
+git config --global user.name "Jon Binney"

@@ -17,11 +17,6 @@ if [ -f $ROS_BASHRC ]; then
   source $ROS_BASHRC
 fi;
 
-VSTOOL_SETUP=$HOME/vcs/vcstool/setup.sh
-if [ -f $VSTOOL_SETUP ]; then
-  source $VSTOOL_SETUP
-fi;
-
 export PATH=$HOME/config/scripts:$PATH
 
 # use vim keybindings in bash

@@ -6,7 +6,11 @@ alias emacs='emacs -nw'
 
 export EDITOR=emacs
 
-PS1="\n\[\033[32m\][\w]\[\033[0m\]\n\[\033[1;36m\]\u@\[\033[32m\]\h\[\033[1;33m\]-> \[\033[0m\]"
+function parse_git_branch_and_add_brackets {
+      git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ \[\1\]/'
+}
+
+PS1="\n\[\033[32m\][\w]\[\033[0m\]\n\[\033[1;36m\]\u@\[\033[32m\]\h\[\033[1;33m\]\$(parse_git_branch_and_add_brackets)-> \[\033[0m\]"
 
 ROS_BASHRC=$HOME/vcs/ros-shell-utils/bashrc/bashrc.sh
 if [ -f $ROS_BASHRC ]; then

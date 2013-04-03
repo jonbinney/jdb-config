@@ -12,11 +12,6 @@ function parse_git_branch_and_add_brackets {
 
 PS1="\n\[\033[32m\][\w]\[\033[0m\]\n\[\033[1;36m\]\u@\[\033[32m\]\h\[\033[1;33m\]\$(parse_git_branch_and_add_brackets)-> \[\033[0m\]"
 
-ROS_BASHRC=$HOME/vcs/ros-shell-utils/bashrc/bashrc.sh
-if [ -f $ROS_BASHRC ]; then
-  source $ROS_BASHRC
-fi;
-
 export PATH=$HOME/config/scripts:$PATH
 
 # use vim keybindings in bash
@@ -32,7 +27,17 @@ if [ -f ${VIM_NOX} ]; then
     alias vim=${VIM_NOX}
 fi;
 
-source $BASH_LOCAL_DIR/funcs.sh
+# useful functions (should move these into more specific files)
+source ${BASH_LOCAL_DIR}/funcs.sh
+
+# general ROS stuff
+source ${BASH_LOCAL_DIR}/ros.sh
+
+# workspace management stuff
+source ${BASH_LOCAL_DIR}/ws.sh
+
+# PR2 specific stuff
+source ${BASH_LOCAL_DIR}/robots.sh
 
 git config --global user.email "jbinney@willowgarage.com"
 git config --global user.name "Jon Binney"

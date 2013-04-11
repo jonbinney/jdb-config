@@ -4,7 +4,7 @@
 #
 ############################################################
 
-function ws()
+function create_ws()
 {
     cd $HOME/ws/"$1"
     export ROS_WS=$PWD

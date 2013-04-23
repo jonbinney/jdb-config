@@ -4,6 +4,9 @@
 #
 ############################################################
 
+# show node name in rosconsole output
+export ROSCONSOLE_FORMAT='[${node}] [${time}]: ${message}'
+
 alias tfmon="rosrun tf tf_monitor"
 alias imview="rosrun rqt_image_view rqt_image_view"
 alias reconf="rosrun rqt_reconfigure rqt_reconfigure"

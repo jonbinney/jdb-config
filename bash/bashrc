@@ -36,7 +36,7 @@ source ${BASH_LOCAL_DIR}/ros.sh
 # workspace management stuff
 source ${BASH_LOCAL_DIR}/ws.sh
 
-# PR2 specific stuff
+# robot specific stuff
 source ${BASH_LOCAL_DIR}/robots.sh
 
 git config --global user.email "jbinney@willowgarage.com"

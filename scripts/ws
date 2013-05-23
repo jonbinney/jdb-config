@@ -15,27 +15,39 @@ class WS:
         # os.path.realpath disambiguates directories which have multiple names due to symlinks
         self.local_workspace_dir = os.path.realpath(os.getcwd())
         self.rel_local_workspace_dir = os.path.relpath(self.local_workspace_dir, self.home_dir)
-        self.rel_local_src_dir = os.path.join(self.rel_local_workspace_dir, 'src')
 
     def call(self, cmd):
         subprocess.call(cmd)
-    
-    def push(self, remote):
-        # assume workspace should in the same directory (relative to home) on the remote system
-        remote_workspace_dir = self.rel_local_workspace_dir
+
+    def push_dir(self, local_dir, remote_dir, remote_host):
         remote_workspace_uri = '%s:%s' % (args.remote_host, remote_workspace_dir)
         
         print '%s --> %s' % (self.local_workspace_dir, remote_workspace_uri)
 
         # push source directories
-        for subdir in ['src']: #, 'rosbuild_src']: # (should push rosbuild_src, but shouldn't push build files)
-            local_dir = os.path.join(self.local_workspace_dir, subdir)
+        #for subdir in ['src']: #, 'rosbuild_src']: # (should push rosbuild_src, but shouldn't push build files)
+        #local_dir = os.path.join(self.local_workspace_dir, subdir)
+        local_dir = self.local_workspace_dir
 
-            print 'Synchronizing %s --> %s' % (local_dir, remote_workspace_uri)
+        print 'Synchronizing %s --> %s' % (local_dir, remote_workspace_uri)
 
-            # ignore git config files
-            sync_cmd = ['rsync', '-ravz', '--delete', '--filter=- .git', local_dir, remote_workspace_uri]
-            self.call(sync_cmd)
+        # ignore git config files
+        sync_cmd = ['rsync', '-ravz', '--delete', '--filter=- .git', local_dir, remote_workspace_uri]
+        self.call(sync_cmd)
+    
+    def push(self, remote_host):
+        # assume workspace should in the same directory (relative to home) on the remote system
+        remote_workspace_dir = self.rel_local_workspace_dir
+
+        for filename in os.listdir(self.local_workspace_dir):
+            local_path = os.path.join(self.local_workspace_dir, filename)
+            if filename == 'src':
+                # source directory for a normal workspace
+                self.push_dir(local_path, remote_workspace_dir, remote_host)
+            elif filename[:2] == 'ws':
+                # sub-workspace
+                
+
 
 
 # parse command line args

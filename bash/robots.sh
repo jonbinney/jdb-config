@@ -18,6 +18,10 @@ alias huey="use_robot huey"
 alias dewey="use_robot dewey"
 alias louie="use_robot louie"
 
+alias may="use_robot may"
+alias june="use_robot june"
+alias april="use_robot april"
+
 function use_robot()
 {
     ROBOT_HOSTNAME=$1

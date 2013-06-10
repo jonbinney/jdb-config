@@ -4,6 +4,12 @@ export DROPBOX_DIR=$HOME/Dropbox
 alias rebash="source $HOME/.bashrc"
 alias emacs='emacs -nw'
 
+alias cdd="cd .."
+alias cddd="cd ../.."
+alias cdddd="cd ../../.."
+alias cddddd="cd ../../../.."
+alias cdddddd="cd ../../../../.."
+
 export EDITOR=emacs
 
 function parse_git_branch_and_add_brackets {

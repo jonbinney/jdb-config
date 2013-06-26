@@ -5,59 +5,6 @@
 (setq load-path (append load-path (list "~/Config/emacs"))) 
 (setq load-path (append load-path (list "~/Config/emacs/js3-mode"))) 
 
-;; Load CEDET.
-;; See cedet/common/cedet.info for configuration details.
-;; IMPORTANT: For Emacs >= 23.2, you must place this *before* any
-;; CEDET component (including EIEIO) gets activated by another 
-;; package (Gnus, auth-source, ...).
-;(load-file "~/Source/cedet/lisp/cedet/cedet.el")
-;(global-ede-mode t)
-
-;; Add further minor-modes to be enabled by semantic-mode.
-;; See doc-string of `semantic-default-submodes' for other things
-;; you can use here.
-;;(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
-;;(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
-;;(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
-
-;; Enable Semantic
-;;(semantic-mode 1)
-
-;; Enable EDE (Project Management) features
-;;(global-ede-mode 1)
-
-;;(semantic-load-enable-excessive-code-helpers)
-;;(global-semantic-tag-folding-mode 1)  ; not included in current cedet??
-;;(global-semanticdb-minor-mode 1)
-
-;;(require 'semantic-ia)
-
-;; ecb
-;;(add-to-list 'load-path "~/Source/ecb-2.40/")
-;;(require 'ecb)
-
-;(defun my-cedet-hook ()
-;  (local-set-key [(control return)] 'semantic-ia-complete-symbol)
-;  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
-;  (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
-;  (local-set-key "\C-c=" 'semantic-decoration-include-visit)
-;  (local-set-key "\C-cj" 'semantic-ia-fast-jump)
-;  (local-set-key "\C-cq" 'semantic-ia-show-doc)
-;  (local-set-key "\C-cs" 'semantic-ia-show-summary)
-;  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
- ; (local-set-key "\C-c+" 'semantic-tag-folding-show-block)
- ; (local-set-key "\C-c-" 'semantic-tag-folding-fold-block)
- ; (local-set-key "\C-c\C-c+" 'semantic-tag-folding-show-all)
- ; (local-set-key "\C-c\C-c-" 'semantic-tag-folding-fold-all)
- ; )
-;(add-hook 'c-mode-common-hook 'my-cedet-hook)
-
-;(global-set-key (kbd "C-x <up>") 'windmove-up)
-;(global-set-key (kbd "C-x <down>") 'windmove-down)
-;(global-set-key (kbd "C-x <right>") 'windmove-right)
-;(global-set-key (kbd "C-x <left>") 'windmove-left)
-
-
 ;; Remember recently opened files
 (require 'recentf)
 (recentf-mode 1)
@@ -119,16 +66,16 @@
 
 ;; ROS
 ; Tell emacs where to find the rosemacs sources
-(push (expand-file-name "~/config/emacs/rosemacs") load-path) 
+;; (push (expand-file-name "~/config/emacs/rosemacs") load-path) 
 ;; Load the library and start it up
-(condition-case nil
-    (progn
-      (require 'rosemacs)
-      (invoke-rosemacs))
-  (error (message "error when loading rosemacs")))
+;; (condition-case nil
+;;     (progn
+;;      (require 'rosemacs)
+;;      (invoke-rosemacs))
+;;  (error (message "error when loading rosemacs")))
 
 ;; prefix for the rosemacs commands
-(global-set-key "\C-x\C-r" ros-keymap)
+;; (global-set-key "\C-x\C-r" ros-keymap)
 
 ;; need no toolbar nor menu
 (tool-bar-mode -1)

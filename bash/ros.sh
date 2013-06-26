@@ -12,6 +12,7 @@ alias imview="rosrun rqt_image_view rqt_image_view"
 alias reconf="rosrun rqt_reconfigure rqt_reconfigure"
 alias console="rosrun rqt_console rqt_console"
 alias romon="rosrun rqt_robot_monitor rqt_robot_monitor"
+alias rviz="rosrun rviz rviz"
 
 function radd()
 {

@@ -45,7 +45,7 @@ source ${BASH_LOCAL_DIR}/ws.sh
 # robot specific stuff
 source ${BASH_LOCAL_DIR}/robots.sh
 
-git config --global user.email "jbinney@willowgarage.com"
+git config --global user.email "jon.binney@gmail.com"
 git config --global user.name "Jon Binney"
 git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=7200'

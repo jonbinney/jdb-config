@@ -1,0 +1,11 @@
+#!//bin/sh
+#
+# mount mac partition (/dev/sda2 on my macbook pro) read/write
+#
+set -e
+
+MOUNT_DIR=/media/mac
+
+sudo mkdir -p ${MOUNT_DIR}
+sudo mount -t hfsplus -o force,rw /dev/sda2 ${MOUNT_DIR}
+

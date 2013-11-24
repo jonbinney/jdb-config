@@ -14,6 +14,9 @@ alias cdddddd="cd ../../../../.."
 
 export EDITOR=vim
 
+# use vim keybindings for bash shell
+set -o vi
+
 function parse_git_branch_and_add_brackets {
       git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ \[\1\]/'
 }

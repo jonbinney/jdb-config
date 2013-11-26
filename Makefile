@@ -1,6 +1,10 @@
-all:
+all: apt_packages
 	$(MAKE) -C vim
 
-install:
+apt_packages:
+	sudo apt-get install `cat apt/dev_packages`
+
+
+install: all
 	python setup.py
 

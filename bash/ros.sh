@@ -35,4 +35,12 @@ function hydro()
 }
 
 
-
+function dev()
+{
+    if [ -e qtcreator-build ]
+    then
+      source ./qtcreator-build/devel/setup.bash
+    else
+      source ./devel/setup.bash
+    fi
+}

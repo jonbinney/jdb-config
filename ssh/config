@@ -1,5 +1,1 @@
-# prints a special line that will cause tmux to set title to hostname
-Host *
-PermitLocalCommand yes
-LocalCommand if [[ $TERM == screen* ]]; then printf "\033k%h\033\\"; fi
 

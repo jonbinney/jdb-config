@@ -2,7 +2,7 @@ export BASH_LOCAL_DIR=$HOME/config/bash
 export DROPBOX_DIR=$HOME/Dropbox
 
 alias t=tmux
-alias tm="tmux -L tmux_mega -f $HOME/config/tmux/tmux_mega.conf new -s MEGA"
+alias tm="tmux -L tmux_mega -f $HOME/config/tmux/tmux_mega.conf"
 
 alias rebash="source $HOME/.bashrc"
 alias emacs='emacs -nw'

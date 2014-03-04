@@ -20,18 +20,6 @@ python-mutagen
 terminator
 openvpn
 
-texlive
-texlive-publishers
-texlive-fonts-recommended
-texlive-latex-recommended
-texlive-latex-extra
-texlive-extra-utils
-texlive-science
-rubber
-lyx
-tortoisehg
-
-firefox
 pidgin
 vlc
 k3b

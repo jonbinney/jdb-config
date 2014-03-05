@@ -40,6 +40,9 @@ function dev()
     if [ -e qtcreator-build ]
     then
       source ./qtcreator-build/devel/setup.bash
+    elif [ -e src-build ]
+    then
+      source src-build/devel/setup.bash
     else
       source ./devel/setup.bash
     fi

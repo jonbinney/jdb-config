@@ -34,6 +34,11 @@ function hydro()
     source /opt/ros/hydro/setup.bash
 }
 
+function indigo()
+{
+    source /opt/ros/indigo/setup.bash
+}
+
 
 function dev()
 {

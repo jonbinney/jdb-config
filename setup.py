@@ -44,7 +44,7 @@ if __name__ == '__main__':
     link_in_home('screen/.screenrc', '.screenrc')
     link_in_home('vim/.vimrc', '.vimrc')
     link_in_home('vim', '.vim')
-    link_in_home('x/.Xmodmap', '.Xmodmap')
+    link_in_home('x/.xinitrc', '.xinitrc')
     link_in_home('tmux/tmux.conf', '.tmux.conf')
 
     # have ipython call my stuff on startup

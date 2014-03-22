@@ -23,7 +23,6 @@ parser.add_argument('catkin_workspaces', metavar='catkin_workspaces', type=str, 
 parser.add_argument('-p', dest='project_name', default='foo', help='sublime text project name')
 args = parser.parse_args()
 
-
 cxx_flags = []
 folders = []
 
@@ -33,7 +32,6 @@ for catkin_workspace_dir in args.catkin_workspaces:
     build_dir = os.path.join(catkin_workspace_path, 'build')
 
     folders.append({
-        'follow_symlinks' : True,
         'path' : src_dir,
         'name' : catkin_workspace_dir
     })

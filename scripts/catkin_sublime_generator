@@ -4,7 +4,7 @@ import os, os.path, re, sys, json, argparse
 cxx_flags_re = re.compile('CXX_FLAGS = (.+)')
 
 def process_flags_file(filename):
-    global include_dirs
+    global cxx_flags
     print 'Processing', filename
     f = open(filename)
     s = f.read()
@@ -33,7 +33,7 @@ for catkin_workspace_dir in args.catkin_workspaces:
 
     folders.append({
         'path' : src_dir,
-        'name' : catkin_workspace_dir
+        'name' : os.path.split(catkin_workspace_path)[1]
     })
     for root, dirs, files in os.walk(build_dir):
         if 'flags.make' in files:

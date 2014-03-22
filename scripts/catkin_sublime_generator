@@ -24,9 +24,7 @@ parser.add_argument('-p', dest='project_name', default='foo', help='sublime text
 args = parser.parse_args()
 
 
-cxx_flags = [
-    '-stdlib=libc++',
-]
+cxx_flags = []
 folders = []
 
 for catkin_workspace_dir in args.catkin_workspaces:

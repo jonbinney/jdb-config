@@ -4,7 +4,10 @@ import os, os.path, re, sys, json, argparse
 cxx_flags_re = re.compile('CXX_FLAGS = (.+)')
 
 def process_flags_file(filename):
-    global cxx_flags
+    '''
+    Look through a flags.make file that cmake created and add include directories to project
+    '''
+    global project
     print 'Processing', filename
     f = open(filename)
     s = f.read()
@@ -14,37 +17,46 @@ def process_flags_file(filename):
         cxx_flags_str = m.groups()[0]
         for cxx_flag in cxx_flags_str.split():
             if cxx_flag[:2] == '-I':
-                if cxx_flag not in cxx_flags:
-                    cxx_flags.append(cxx_flag)
+                if cxx_flag not in project['settings']['sublimeclang_options']:
+                    project['settings']['sublimeclang_options'].append(cxx_flag)
 
-parser = argparse.ArgumentParser(description='Create a Sublime Text workspace from catkin workspace(s)')
-parser.add_argument('catkin_workspaces', metavar='catkin_workspaces', type=str, nargs='+',
-                     help='catkin workspaces')
-parser.add_argument('-p', dest='project_name', default='foo', help='sublime text project name')
-args = parser.parse_args()
-
-cxx_flags = []
-folders = []
-
-for catkin_workspace_dir in args.catkin_workspaces:
+def process_catkin_workspace(catkin_workspace_dir):
+    '''
+    Add catkin workspace to the project
+    '''
+    global project
     catkin_workspace_path = os.path.realpath(catkin_workspace_dir)
     src_dir = os.path.join(catkin_workspace_path, 'src')
     build_dir = os.path.join(catkin_workspace_path, 'build')
 
-    folders.append({
+    # Add folder so we'll see in the sublime sidepane
+    project['folders'].append({
         'path' : src_dir,
         'name' : os.path.split(catkin_workspace_path)[1]
     })
+
+    # Add all the include directories we can find so that SublimeClang can compile code
     for root, dirs, files in os.walk(build_dir):
         if 'flags.make' in files:
             process_flags_file(os.path.join(root, 'flags.make'))
 
+
+parser = argparse.ArgumentParser(description='Create a Sublime Text workspace from catkin workspace(s)')
+parser.add_argument('catkin_workspace', help='catkin workspaces')
+parser.add_argument('-p', dest='project_name', default='foo', help='sublime text project name')
+args = parser.parse_args()
+
+project = {
+    'folders': [],
+    'settings' : {
+        'sublimeclang_options' : []
+    }
+}
+
+# Find folders and include directories in each catkin workspace
+process_catkin_workspace(args.catkin_workspace)
+
+# Write project file
 output_file = open(args.project_name + '.sublime-project', 'w+')
-json.dump(
-    {
-        'folders' : folders,
-        'settings' : {
-            'sublimeclang_options' : cxx_flags
-        }
-    }, output_file, indent=4)
+json.dump(project, output_file, indent=4)
 output_file.close()

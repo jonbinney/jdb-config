@@ -1,0 +1,24 @@
+[user]
+	email = jon.binney@gmail.com
+	name = Jon Binney
+
+[credential]
+	helper = cache --timeout=7200
+
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  b = branch -a
+  c = clone
+  hist = log --graph --oneline --decorate --color
+  type = cat-file -t
+  dump = cat-file -p
+  diffs = diff --staged
+  r = remote -v
+  
+[color]
+	ui = true
+
+[interactive]
+  singlekey = true

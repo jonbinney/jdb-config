@@ -46,6 +46,7 @@ if __name__ == '__main__':
     link_in_home('vim', '.vim')
     link_in_home('x/.xinitrc', '.xinitrc')
     link_in_home('tmux/tmux.conf', '.tmux.conf')
+    link_in_home('git/.gitconfig', '.gitconfig')
 
     # have ipython call my stuff on startup
     #  needs to be updated for new ipython config structure...

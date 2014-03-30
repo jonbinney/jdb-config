@@ -64,6 +64,20 @@ cmap w!! w !sudo tee % >/dev/null
 au BufNewFile,BufRead *.launch setfiletype xml
 cmap w!! w !sudo tee % >/dev/null
 
+"""""""""""""
+" NERDTree
+"""""""""""""
+
+" Open NERDTree when vim starts up if no files specified at command line
+autocmd vimenter * if !argc() | NERDTree | endif
+
+" Ctrl-n Toggles NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+" Close vim if NERDTree is only remaining pane
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+
 call pathogen#infect()
 cmap w!! w !sudo tee % >/dev/null
 call pathogen#helptags()

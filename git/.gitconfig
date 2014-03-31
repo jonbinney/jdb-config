@@ -1,9 +1,9 @@
 [user]
-	email = jon.binney@gmail.com
-	name = Jon Binney
+    email = jon.binney@gmail.com
+    name = Jon Binney
 
 [credential]
-	helper = cache --timeout=7200
+    helper = cache --timeout=7200
 
 [alias]
   co = checkout
@@ -16,9 +16,11 @@
   dump = cat-file -p
   diffs = diff --staged
   r = remote -v
-  
+
 [color]
-	ui = true
+    ui = true
+    [diff]
+        whitespace = "red reverse"
 
 [interactive]
   singlekey = true

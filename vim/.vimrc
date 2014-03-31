@@ -77,6 +77,16 @@ map <C-n> :NERDTreeToggle<CR>
 " Close vim if NERDTree is only remaining pane
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+""""""""""""
+" C++
+""""""""""""
+
+autocmd FileType c,cpp,h,hpp,hxx,py highlight OverLength ctermbg=DarkBlue ctermfg=white guibg=#FFD9D9
+autocmd FileType c,cpp,h,hpp,hxx,py match OverLength /\%121v.\+/
+
+""""""""""""
+" Pathogen
+""""""""""""
 
 call pathogen#infect()
 cmap w!! w !sudo tee % >/dev/null

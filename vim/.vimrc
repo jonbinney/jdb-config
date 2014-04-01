@@ -1,5 +1,3 @@
-let mapleader = ","
-
 set so=7 "display some rows below the cursor when scrolling
 
 set nobackup
@@ -54,7 +52,7 @@ vmap Q gq
 nmap Q gqap
 
 " use ,/ combo to clear the highlighted search
-nmap <silent> ,/ :nohlsearch<CR>
+"nmap <silent> ,/ :nohlsearch<CR>
 
 " save using sudo
 cmap w!! w !sudo tee % >/dev/null
@@ -75,7 +73,7 @@ autocmd vimenter * if !argc() | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 
 " Close vim if NERDTree is only remaining pane
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 """"""""""""
 " C++

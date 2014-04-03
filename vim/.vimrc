@@ -90,3 +90,8 @@ call pathogen#infect()
 cmap w!! w !sudo tee % >/dev/null
 call pathogen#helptags()
 
+""""""""""""
+" ROS
+""""""""""""
+
+set makeprg=catkin_make

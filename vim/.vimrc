@@ -35,6 +35,10 @@ set t_Co=256
 syntax on
 colorscheme wombat256mod
 
+" Make backspaces actually work:
+"   http://vim.wikia.com/wiki/Backspace_and_delete_problems
+set backspace=indent,eol,start
+
 " hide buffers; don't close them. this way we don't have to save
 " a buffer before switching to another one.
 set hidden

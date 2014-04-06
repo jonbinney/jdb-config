@@ -87,15 +87,21 @@ autocmd FileType c,cpp,h,hpp,hxx,py highlight OverLength ctermbg=DarkBlue ctermf
 autocmd FileType c,cpp,h,hpp,hxx,py match OverLength /\%121v.\+/
 
 """"""""""""
+" ROS
+""""""""""""
+
+set makeprg=catkin_make
+
+""""""""""""
+" YCM
+""""""""""""
+
+let g:ycm_confirm_extra_conf = 0
+
+""""""""""""
 " Pathogen
 """"""""""""
 
 call pathogen#infect()
 cmap w!! w !sudo tee % >/dev/null
 call pathogen#helptags()
-
-""""""""""""
-" ROS
-""""""""""""
-
-set makeprg=catkin_make

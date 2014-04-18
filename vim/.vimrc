@@ -90,13 +90,18 @@ autocmd FileType c,cpp,h,hpp,hxx,py match OverLength /\%121v.\+/
 " ROS
 """"""""""""
 
-set makeprg=catkin_make
+set makeprg=unbuffer\ catkin_make
 
 """"""""""""
 " YCM
 """"""""""""
 
-let g:ycm_confirm_extra_conf = 0
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_error_symbol = '>>'
+let g:ycm_warning_symbol = '>*'
+let g:ycm_confirm_extra_conf=0
 
 """"""""""""
 " Pathogen

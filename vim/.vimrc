@@ -79,6 +79,8 @@ map <C-n> :NERDTreeToggle<CR>
 " Close vim if NERDTree is only remaining pane
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+map <leader>r :NERDTreeFind<cr>
+
 """"""""""""
 " C++
 """"""""""""

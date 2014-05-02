@@ -92,7 +92,7 @@ autocmd FileType c,cpp,h,hpp,hxx,py match OverLength /\%121v.\+/
 " ROS
 """"""""""""
 
-set makeprg=unbuffer\ catkin_make
+set makeprg=catkin_make
 
 """"""""""""
 " YCM

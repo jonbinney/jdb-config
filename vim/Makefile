@@ -1,4 +1,4 @@
-all: vim you_complete_me command_t
+all: you_complete_me command_t
 
 you_complete_me:
 	cd bundle/YouCompleteMe && ./install.sh --clang-completer

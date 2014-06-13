@@ -24,3 +24,10 @@
 
 [interactive]
   singlekey = true
+
+# Always use ssh for github, even if the remote URL uses
+# https or git
+[url "git@github.com:"]
+  insteadOf = git://github.com/
+[url "git@github.com:"]
+  insteadOf = https://github.com/

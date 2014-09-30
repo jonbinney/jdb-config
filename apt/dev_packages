@@ -4,6 +4,9 @@ ruby-dev
 xclip
 vim-nox
 qtcreator
+cmake
+python-dev
+gnome-tweak-tool
 
 exuberant-ctags
 expect-dev

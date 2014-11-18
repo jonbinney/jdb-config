@@ -26,6 +26,12 @@ PS1="\n\[\033[32m\][\w]\[\033[0m\]\n\[\033[1;36m\]\u@\[\033[32m\]\h\[\033[1;33m\
 
 export PATH=$HOME/config/local/bin:$HOME/config/scripts:$PATH
 
+# Hack to make java fonts look better
+#
+#   http://anadoxin.org/blog/blog/20140908/fixing-ugly-java-fonts/
+#
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
+
 # use vim keybindings in bash
 # set -o vi
 

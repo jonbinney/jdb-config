@@ -13,6 +13,12 @@ alias reconf="rosrun rqt_reconfigure rqt_reconfigure"
 alias console="rosrun rqt_console rqt_console"
 alias romon="rosrun rqt_robot_monitor rqt_robot_monitor"
 alias rviz="rosrun rviz rviz"
+alias c="catkin_make"
+alias ci="catkin_make install"
+alias cr="catkin_make -DCMAKE_BUILD_TYPE=Release"
+alias cri="catkin_make -DCMAKE_BUILD_TYPE=Release install"
+alias cdi="catkin_make -DCMAKE_BUILD_TYPE=Debug install"
+alias cclean="rm -rf build devel install"
 
 function radd()
 {
@@ -39,7 +45,6 @@ function indigo()
     source /opt/ros/indigo/setup.bash
 }
 
-
 function dev()
 {
     if [ -e qtcreator-build ]
@@ -55,3 +60,4 @@ function dev()
       source ./devel/setup.bash
     fi
 }
+

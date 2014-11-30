@@ -27,9 +27,6 @@ set guioptions-=m
 " Remove toolbar from gvim
 set guioptions-=T
 
-" Show line numbers
-set number
-
 " turn syntax highlighting on
 set t_Co=256
 syntax on

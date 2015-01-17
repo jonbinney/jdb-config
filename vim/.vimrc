@@ -86,6 +86,13 @@ autocmd FileType c,cpp,h,hpp,hxx,py highlight OverLength ctermbg=DarkBlue ctermf
 autocmd FileType c,cpp,h,hpp,hxx,py match OverLength /\%121v.\+/
 
 """"""""""""
+" Rust
+""""""""""""
+
+filetype on
+au BufNewFile,BufRead *.rs set filetype=rust
+
+""""""""""""
 " ROS
 """"""""""""
 

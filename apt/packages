@@ -3,21 +3,15 @@ ipython
 python-tk
 python-scipy
 python-matplotlib
-mayavi2
 scons
-emacs
 vim
 mercurial
 git
-python-mode
 inkscape
 subversion
 openssh-server
 cmake
-swig
 python-setuptools
-python-mutagen
-terminator
 openvpn
 
 pidgin
@@ -26,4 +20,11 @@ k3b
 freemind
 gimp
 
-network-manager-openvpn-gnome
+
+roxterm
+tmux
+ruby-dev
+xclip
+vim-nox
+cmake
+python-dev

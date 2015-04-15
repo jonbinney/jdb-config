@@ -48,12 +48,12 @@ def is_include_dir_flag(flag):
 
 
 # Parse commandline arguments
-parser = argparse.ArgumentParser(description='Create a Sublime Text workspace from catkin workspace(s)')
-parser.add_argument('catkin_workspace', help='catkin workspaces')
+parser = argparse.ArgumentParser(description='Create a YCM config for a catkin workspace')
+parser.add_argument('catkin_workspace', help='catkin workspace directory')
 args = parser.parse_args()
 
-flags = compile_flags_from_catkin_workspace(args.catkin_workspace)
-flags = [f for f in flags if is_include_dir_flag(f)]
+all_flags = compile_flags_from_catkin_workspace(args.catkin_workspace)
+flags = ['--std=c++11'] + [f for f in all_flags if is_include_dir_flag(f)]
 flags = uniqify_list(flags)
 
 # Create YCM config file

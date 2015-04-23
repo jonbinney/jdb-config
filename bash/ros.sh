@@ -19,7 +19,7 @@ alias cr="catkin_make -DCMAKE_BUILD_TYPE=Release"
 alias cri="catkin_make -DCMAKE_BUILD_TYPE=Release install"
 alias cdi="catkin_make -DCMAKE_BUILD_TYPE=Debug install"
 alias cclean="rm -rf build devel install"
-alias br="bloom-release --rosdistro indigo --track indigo"
+alias br="bloom-release --rosdistro jade --track jade"
 
 function radd()
 {
@@ -42,6 +42,11 @@ function hydro()
 }
 
 function indigo()
+{
+    source /opt/ros/indigo/setup.bash
+}
+
+function jade()
 {
     source /opt/ros/indigo/setup.bash
 }

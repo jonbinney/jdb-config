@@ -96,7 +96,7 @@ au BufNewFile,BufRead *.rs set filetype=rust
 " ROS
 """"""""""""
 
-set makeprg=catkin_make\ -C\ ..
+set makeprg=catkin\ build\ -w\ ..
 
 """"""""""""
 " YCM

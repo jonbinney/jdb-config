@@ -1,12 +1,7 @@
-all: you_complete_me command_t
+all: bundle
+	$(MAKE) -C bundle
 
-you_complete_me:
-	cd bundle/YouCompleteMe && ./install.sh --clang-completer
-
-command_t:
-	cd bundle/command-t/ruby/command-t && ruby extconf.rb && make && cd -
-
-# Build Vim from source, since YouCompleteMe needs a new version of Vim
+# Not built by default. Just here in case I need it on some machine later
 vim: vim_src
 	sudo apt-get install mercurial build-essential ncurses-dev
 	cd vim_src/src && ./configure --with-features=huge --enable-pythoninterp --enable-rubyinterp --prefix=${HOME}/config/local
@@ -16,6 +11,3 @@ vim: vim_src
 # Checkout Vim source code
 vim_src:
 	hg clone https://vim.googlecode.com/hg/ vim_src
-
-
-.phony: all

@@ -79,11 +79,11 @@ map <C-n> :NERDTreeToggle<CR>
 map <leader>r :NERDTreeFind<cr>
 
 """"""""""""
-" C++
+" Line width helpers
 """"""""""""
 
-autocmd FileType c,cpp,h,hpp,hxx,py highlight OverLength ctermbg=DarkBlue ctermfg=white guibg=#FFD9D9
-autocmd FileType c,cpp,h,hpp,hxx,py match OverLength /\%121v.\+/
+highlight OverLength ctermbg=red ctermfg=DarkBlue guibg=#FFD9D9
+match OverLength /\%80v.\+/
 
 """"""""""""
 " Rust

@@ -50,3 +50,6 @@ source ${BASH_LOCAL_DIR}/ws.sh
 # robot specific stuff
 source ${BASH_LOCAL_DIR}/robots.sh
 
+# handy git stuff
+source ${BASH_LOCAL_DIR}/git.sh
+

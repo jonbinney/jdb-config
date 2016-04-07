@@ -51,6 +51,11 @@ function jade()
     source /opt/ros/indigo/setup.bash
 }
 
+function kinetic()
+{
+    source /opt/ros/kinetic/setup.bash
+}
+
 function dev()
 {
     if [ -e qtcreator-build ]

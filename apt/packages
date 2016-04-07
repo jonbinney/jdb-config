@@ -1,6 +1,5 @@
 build-essential
 ipython
-python-tk
 python-scipy
 python-matplotlib
 scons
@@ -13,18 +12,10 @@ openssh-server
 cmake
 python-setuptools
 openvpn
-
-pidgin
 vlc
-k3b
-freemind
 gimp
-
-
-roxterm
 tmux
 ruby-dev
 xclip
-vim-nox
 cmake
 python-dev

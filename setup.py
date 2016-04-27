@@ -18,8 +18,13 @@ def link_in_home(from_file, to_file):
     print 'Linked %s to %s' % (from_file, to_file)
 
 def insert_text_in_file(filename, text, comment_char):
+    # Create file if it does not exist
+    if not os.path.exists(filename):
+    	f = open(filename, 'w+')
+	f.close()
+
     try:
-        f_str = open(filename, 'rw').read()
+        f_str = open(filename, 'rw+').read()
         if not re.search(r'JDB', f_str):
             print 'Adding custom text to %s' % filename
             shutil.copy(filename, filename + '.bak_%f' % time.time())
@@ -46,7 +51,7 @@ if __name__ == '__main__':
     link_in_home('git/.gitconfig', '.gitconfig')
 
     # have bash call my stuff on startup
-    bashrc_filename = os.path.join(home_dir, '.bashrc')
+    bashrc_filename = os.path.join(home_dir, '.bash_profile')
     text = 'source %s' % os.path.join(home_dir, 'config/bash/bashrc')
     insert_text_in_file(bashrc_filename, text, '#')
     

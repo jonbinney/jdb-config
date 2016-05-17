@@ -49,6 +49,7 @@ if __name__ == '__main__':
     link_in_home('vim', '.vim')
     link_in_home('tmux/tmux.conf', '.tmux.conf')
     link_in_home('git/.gitconfig', '.gitconfig')
+    link_in_home('bash/.inputrc', '.inputrc')
 
     # have bash call my stuff on startup
     bashrc_filename = os.path.join(home_dir, '.bash_profile')

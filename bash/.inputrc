@@ -1,0 +1,12 @@
+set editing-mode vi
+
+# vi settings
+$if mode=vi
+    # normal mode
+    set keymap vi-command
+    "gg": beginning-of-history
+    "G": end-of-history
+    # insert mode
+    set keymap vi-insert
+    "kj": vi-movement-mode
+$endif

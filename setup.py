@@ -52,8 +52,12 @@ if __name__ == '__main__':
     link_in_home('bash/.inputrc', '.inputrc')
 
     # have bash call my stuff on startup
-    bashrc_filename = os.path.join(home_dir, '.bash_profile')
+    bash_rc_filename = os.path.join(home_dir, '.bashrc')
+    bash_profile_filename = os.path.join(home_dir, '.bash_profile')
     text = 'source %s' % os.path.join(home_dir, 'config/bash/bashrc')
-    insert_text_in_file(bashrc_filename, text, '#')
-    
+    if os.path.exists(bash_rc_filename):
+        insert_text_in_file(bash_rc_filename, text, '#')
+    else:
+        insert_text_in_file(bash_profile_filename, text, '#')
+
 

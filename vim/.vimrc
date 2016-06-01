@@ -1,3 +1,6 @@
+" Use k followed by j as escape.
+inoremap kj <Esc>
+
 set so=7 "display some rows below the cursor when scrolling
 
 set nobackup
@@ -97,17 +100,6 @@ au BufNewFile,BufRead *.rs set filetype=rust
 """"""""""""
 
 set makeprg=catkin\ build\ -w\ ..
-
-""""""""""""
-" YCM
-""""""""""""
-
-nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:ycm_error_symbol = '>>'
-let g:ycm_warning_symbol = '>*'
-let g:ycm_confirm_extra_conf=0
 
 """"""""""""
 " Pathogen

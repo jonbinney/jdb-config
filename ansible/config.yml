@@ -1,0 +1,72 @@
+# Assumes that you are running from this directory.
+#
+#     ansible-playbook -i localhost.ini config.yml
+#
+---
+- hosts: all
+  tasks:
+    - name: Run config script
+      command: python ~/config/setup.py
+      become: yes
+      become_user: jbinney
+
+    - name: Install handy APT packages
+      apt:
+        name={{ item }}
+        state=present
+      with_items:
+        - build-essential
+        - ipython
+        - python-scipy
+        - python-matplotlib
+        - scons
+        - vim
+        - mercurial
+        - git
+        - subversion
+        - openssh-server
+        - cmake
+        - python-setuptools
+        - tmux
+        - ruby-dev
+        - xclip
+        - cmake
+        - python-dev
+      become: yes
+
+    - name: Download Command-T
+      git:
+        repo=https://github.com/wincent/command-t.git
+        dest=~/config/vim/bundle/command-t
+      become: yes
+      become_user: jbinney
+
+    - name: Build Command-T
+      command: ruby extconf.rb && make
+        chdir=~/config/vim/bundle/command-t/ruby/command-t
+      become: yes
+      become_user: jbinney
+
+    # Doesn't need to be built; just downloaded
+    - name: Download NerdTree
+      git:
+        repo=https://github.com/scrooloose/nerdtree.git
+        dest=~/config/vim/bundle/nerdtree
+      become: yes
+      become_user: jbinney
+
+    - name: Download YCM
+      git:
+        repo=https://github.com/Valloric/YouCompleteMe.git
+        dest=~/config/vim/bundle/YouCompleteMe
+        recursive=yes
+        force=yes
+      become: yes
+      become_user: jbinney
+
+    - name: Build YCM
+      command: python install.py --clang-completer
+        chdir=~/config/vim/bundle/YouCompleteMe
+      become: yes
+      become_user: jbinney
+

@@ -20,7 +20,7 @@
         - python-scipy
         - python-matplotlib
         - scons
-        - vim
+        - vim-nox
         - mercurial
         - git
         - subversion

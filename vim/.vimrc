@@ -85,8 +85,8 @@ map <leader>r :NERDTreeFind<cr>
 " Line width helpers
 """"""""""""
 
-highlight OverLength ctermbg=red ctermfg=DarkBlue guibg=#FFD9D9
-match OverLength /\%80v.\+/
+"highlight OverLength ctermbg=red ctermfg=DarkBlue guibg=#FFD9D9
+"match OverLength /\%80v.\+/
 
 """"""""""""
 " Rust

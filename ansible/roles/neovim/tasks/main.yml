@@ -1,0 +1,70 @@
+- name: Install packages needed for python support
+  apt:
+    name={{ item }}
+    state=present
+  with_items:
+    - python-dev
+    - python-pip
+    - python3-dev
+    - python3-pip
+  become: yes
+
+- name: Add Neovim APT repository
+  apt_repository:
+    repo: 'ppa:neovim-ppa/unstable'
+    state: present
+  become: yes
+
+- name: Install Neovim
+  apt:
+    name: neovim
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Install Neovim python module
+  pip:
+    name: neovim
+    state: latest
+  become: yes
+
+- name: Update editor alternatives
+  command: "{{ item }}"
+  become: yes
+  with_items:
+    - update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+    - update-alternatives --config vi
+    - update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+    - update-alternatives --config vim
+    - update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+    - update-alternatives --config editor
+
+- name: Create nvim config directory
+  file:
+    path: "~/.config/nvim/"
+    state: directory
+    mode: 0755
+
+- name: Create symlink for init.vim
+  file:
+    path: "~/.config/nvim/init.vim"
+    state: link
+    src: "~/config/nvim/init.vim"
+
+- name: Create symlink for neovim color schemes
+  file:
+    path: "~/.config/nvim/colors"
+    state: link
+    src: "~/config/nvim/colors"
+
+- name: Download dein (neovim plugin manager)
+  git:
+    repo: https://github.com/Shougo/dein.vim.git
+    dest: "~/.config/nvim/dein.vim"
+
+- name: Create dein plugin directory
+  file:
+    path: "~/.config/nvim/dein_plugins"
+    state: directory
+    mode: 0755
+

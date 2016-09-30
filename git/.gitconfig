@@ -25,6 +25,9 @@
 [interactive]
   singlekey = true
 
+[alias]
+  graph = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
+
 # Always use ssh for github, even if the remote URL uses
 # https or git
 #[url "git@github.com:"]
@@ -32,6 +35,6 @@
 #[url "git@github.com:"]
 #  insteadOf = https://github.com/
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  required = true

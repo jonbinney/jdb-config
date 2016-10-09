@@ -18,6 +18,7 @@
         name={{ item }}
         state=present
       with_items:
+        - ccache
         - build-essential
         - ipython
         - python-scipy

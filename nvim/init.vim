@@ -85,6 +85,15 @@ if dein#check_install(['nerdtree']) == 0
   map <leader>r :NERDTreeFind<cr>
 endif
 
+
+""""""""""""
+" CtrlP
+""""""""""""
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = ''
+
 """"""""""""
 " Line width helpers
 """"""""""""

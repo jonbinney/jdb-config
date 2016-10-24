@@ -10,8 +10,6 @@
 
     - name: Run config script
       command: python ~/config/setup.py
-      become: yes
-      become_user: jbinney
 
     - name: Install handy APT packages
       apt:

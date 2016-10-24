@@ -26,5 +26,5 @@ And finally run the ansible playbook to set everything up.
 
 ```bash
 cd config/ansible
-ansible-playbook -i "localhost," -c local config.yml
+ansible-playbook -K -i "localhost," -c local config.yml
 ```

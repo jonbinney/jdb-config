@@ -1,0 +1,33 @@
+---
+- name: Add packagecloud gpg key (for git-lfs repo)
+  apt_key:
+    url: https://packagecloud.io/gpg.key
+    state: present
+  become: yes
+
+- name: Install dependencies for git-lfs
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - debian-archive-keyring
+    - apt-transport-https
+  become: yes
+
+- name: Add Apt repo for git-lfs
+  template:
+    src: git_lfs.list.j2
+    dest: /etc/apt/sources.list.d/git_lfs.list
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+
+- name: Install git-lfs apt package
+  apt:
+    name: git-lfs
+    state: present
+    update_cache: yes
+  become: yes
+

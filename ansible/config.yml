@@ -6,6 +6,7 @@
 - hosts: all
   roles:
       - { role: neovim }
+      - { role: git_lfs }
   tasks:
 
     - name: Run config script

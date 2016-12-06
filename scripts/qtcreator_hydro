@@ -1,3 +1,0 @@
-#!/bin/bash
-. /opt/ros/hydro/setup.bash
-qtcreator&

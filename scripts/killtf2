@@ -1,2 +1,0 @@
-#!/bin/sh
-kill -9 `ps ax|grep steam|grep -v grep|cut -d' ' -f1`

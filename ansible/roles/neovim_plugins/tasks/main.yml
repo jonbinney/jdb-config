@@ -1,0 +1,22 @@
+- name: Create pathogen plugin directory
+  file:
+    path: ~/.config/nvim/bundle
+    state: directory
+    mode: 0750
+
+- name: Create neovim autoload directory
+  file:
+    path: ~/.config/nvim/autoload
+    state: directory
+    mode: 0750
+
+- name: Download Pathogen for VIM
+  get_url:
+    url: https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+    dest: ~/.config/nvim/autoload/pathogen.vim
+    mode: 0660
+
+- git:
+    repo: https://github.com/scrooloose/nerdtree.git
+    dest: ~/.config/nvim/bundle/nerdtree
+

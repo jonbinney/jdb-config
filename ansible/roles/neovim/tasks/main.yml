@@ -57,14 +57,4 @@
     state: link
     src: "~/config/nvim/colors"
 
-- name: Download dein (neovim plugin manager)
-  git:
-    repo: https://github.com/Shougo/dein.vim.git
-    dest: "~/.config/nvim/dein.vim"
-
-- name: Create dein plugin directory
-  file:
-    path: "~/.config/nvim/dein_plugins"
-    state: directory
-    mode: 0755
 

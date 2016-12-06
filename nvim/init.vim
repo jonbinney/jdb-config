@@ -60,30 +60,13 @@ au BufNewFile,BufRead *.launch setfiletype xml
 cmap w!! w !sudo tee % >/dev/null
 
 """""""""""""
-" Dein
-"""""""""""""
-
-set runtimepath^=~/.config/nvim/dein.vim " path to dein.vim
-
-" Increase dein timeout (YCM takes a long time to compile)
-let g:dein#install_process_timeout = 3600
-
-call dein#begin(expand('~/.config/nvim/dein_plugins'))
-call dein#add('Shougo/dein.vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('ctrlpvim/ctrlp.vim')
-call dein#end()
-
-"""""""""""""
 " NERDTree
 """"""""""""""
 
-if dein#check_install(['nerdtree']) == 0
-  " Ctrl-n Toggles NERDTree
-  map <C-n> :NERDTreeToggle<CR>
+" Ctrl-n Toggles NERDTree
+map <C-n> :NERDTreeToggle<CR>
 
-  map <leader>r :NERDTreeFind<cr>
-endif
+map <leader>r :NERDTreeFind<cr>
 
 
 """"""""""""
@@ -113,4 +96,11 @@ au BufNewFile,BufRead *.rs set filetype=rust
 """"""""""""
 
 set makeprg=catkin\ build\ -w\ ..
+
+
+""""""""""""
+" Pathogen
+""""""""""""
+execute pathogen#infect()
+call pathogen#helptags()
 

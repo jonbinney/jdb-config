@@ -16,7 +16,12 @@
     dest: ~/.config/nvim/autoload/pathogen.vim
     mode: 0660
 
-- git:
+- name: Download NERDTree
+  git:
     repo: https://github.com/scrooloose/nerdtree.git
     dest: ~/.config/nvim/bundle/nerdtree
 
+- name: Download CtrlP
+  git:
+    repo: https://github.com/ctrlpvim/ctrlp.vim.git
+    dest: ~/.config/nvim/bundle/ctrp.vim

@@ -30,12 +30,7 @@
 
 # Always use ssh for github, even if the remote URL uses
 # https or git
-#[url "git@github.com:"]
-#  insteadOf = git://github.com/
-#[url "git@github.com:"]
-#  insteadOf = https://github.com/
-[filter "lfs"]
-  process = git-lfs filter-process --skip
-  required = true
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge --skip -- %f
+[url "git@github.com:"]
+  insteadOf = git://github.com/
+[url "git@github.com:"]
+  insteadOf = https://github.com/

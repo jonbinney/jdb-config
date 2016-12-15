@@ -37,3 +37,9 @@
         - python-dev
       become: yes
 
+    - name: Disable apport (Ubuntu bug notification service)
+      lineinfile:
+        dest: /etc/default/apport
+        regexp: '^enabled='
+        line: 'enabled=0'
+      become: yes

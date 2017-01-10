@@ -28,16 +28,17 @@
     state: latest
   become: yes
 
-- name: Update editor alternatives
-  command: "{{ item }}"
+- name: Update vi alternatives
+  shell: update-alternatives --config vi
   become: yes
-  with_items:
-    - update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-    - update-alternatives --config vi
-    - update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-    - update-alternatives --config vim
-    - update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-    - update-alternatives --config editor
+
+- name: Update vim alternatives
+  shell: update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60 && update-alternatives --config vim
+  become: yes
+
+- name: Update editor alternatives
+  shell: update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60 && update-alternatives --config editor
+  become: yes
 
 - name: Create nvim config directory
   file:

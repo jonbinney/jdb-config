@@ -22,6 +22,13 @@ Clone this config repo.
 git clone git@github.com:jonbinney/jdb-config config
 ```
 
+Use the standard version of Ansible to install the newest PPA version of Ansible.
+
+```bash
+cd config/ansible
+ansible-playbook -K -i "localhost," -c local update_ansible.yml
+```
+
 And finally run the ansible playbook to set everything up.
 
 ```bash

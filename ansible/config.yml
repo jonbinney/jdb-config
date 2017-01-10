@@ -8,6 +8,7 @@
       - { role: neovim }
       - { role: neovim_plugins }
       - { role: hub }
+      - { role: ros }
   tasks:
     - name: Run config script
       command: python ~/config/setup.py

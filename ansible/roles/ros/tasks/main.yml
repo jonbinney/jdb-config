@@ -1,0 +1,39 @@
+---
+- name: Add ROS apt repo
+  apt_repository:
+    repo: "deb http://packages.ros.org/{{ ros_apt_repo }}/ubuntu {{ ansible_distribution_release }} main"
+    state: present
+  become: yes
+
+- name: Import the ROS repository key
+  apt_key:
+    keyserver: hkp://pool.sks-keyservers.net
+    state: present
+    id: B01FA116
+  become: yes
+
+- name: Update apt
+  apt:
+    update_cache: yes
+  become: yes
+
+- name: Install ROS
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python-rosdep
+    - python-rosinstall
+    - python-catkin-tools
+    - "{{ ros_deb }}"
+  become: yes
+
+- name: Initialize rosdep
+  shell: rosdep init
+  args:
+    creates: "{{ rosdep_default_sources_file }}"
+  become: yes
+
+- name: Update rosdep
+  become: yes
+  shell: rosdep update

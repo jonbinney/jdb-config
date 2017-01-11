@@ -9,10 +9,8 @@
       - { role: neovim_plugins }
       - { role: hub }
       - { role: ros }
+      - { role: dot_files, tags: [dot_files] }
   tasks:
-    - name: Run config script
-      command: python ~/config/setup.py
-
     - name: Install handy APT packages
       apt:
         name={{ item }}

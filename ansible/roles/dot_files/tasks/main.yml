@@ -1,0 +1,14 @@
+- file:
+    src: "{{ config_root_dir }}/tmux/tmux.conf"
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"
+    state: link
+
+- file:
+    src: "{{ config_root_dir }}/git/.gitconfig"
+    dest: "{{ ansible_env.HOME }}/.gitconfig"
+    state: link
+
+- lineinfile:
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    line: "source {{ config_root_dir }}/bash/bashrc"
+

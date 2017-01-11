@@ -1,0 +1,2 @@
+---
+config_root_dir: "{{ '../' | realpath }}"

@@ -84,6 +84,8 @@ let g:ctrlp_working_path_mode = ''
 "highlight OverLength ctermbg=red ctermfg=DarkBlue guibg=#FFD9D9
 "match OverLength /\%80v.\+/
 
+set textwidth=100
+
 """"""""""""
 " Rust
 """"""""""""

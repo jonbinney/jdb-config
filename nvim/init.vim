@@ -67,8 +67,8 @@ cmap w!! w !sudo tee % >/dev/null
 
 " Ctrl-n Toggles NERDTree
 map <C-n> :NERDTreeToggle<CR>
-
 map <leader>r :NERDTreeFind<cr>
+let g:NERDTreeWinSize = 60
 
 
 """"""""""""

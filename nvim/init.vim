@@ -12,6 +12,8 @@ set ai "Auto indent
 set si "Smart indet
 set wrap "Wrap lines
 
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=8
+
 set incsearch "Make search act like search in modern browsers
 
 set showmatch "Show matching brackets when text indicator is over them

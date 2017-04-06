@@ -56,6 +56,11 @@ function kinetic()
     source /opt/ros/kinetic/setup.bash
 }
 
+function lunar()
+{
+    source /opt/ros/lunar/setup.bash
+}
+
 function dev()
 {
     if [ -e qtcreator-build ]

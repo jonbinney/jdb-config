@@ -25,6 +25,7 @@
     - python-rosdep
     - python-rosinstall
     - python-catkin-tools
+    - python-bloom
     - "{{ ros_deb }}"
   become: yes
 

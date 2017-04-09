@@ -35,6 +35,7 @@
         - xclip
         - cmake
         - python-dev
+        - vlc
       become: yes
 
     - name: Disable apport (Ubuntu bug notification service)

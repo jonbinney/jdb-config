@@ -36,6 +36,7 @@
         - cmake
         - python-dev
         - vlc
+        - mosh
       become: yes
 
     - name: Disable apport (Ubuntu bug notification service)

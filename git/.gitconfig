@@ -16,6 +16,7 @@
   dump = cat-file -p
   diffs = diff --staged
   r = remote -v
+  recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 
 [color]
     ui = true

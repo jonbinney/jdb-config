@@ -2,4 +2,4 @@
 # Can be "ros" or "ros-shadow-fixed"
 ros_apt_repo: ros-shadow-fixed
 rosdep_default_sources_file: /etc/ros/rosdep/sources.list.d/20-default.list
-ros_deb: ros-kinetic-desktop-full
+ros_deb: ros-melodic-roscpp

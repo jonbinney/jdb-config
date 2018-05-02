@@ -7,7 +7,7 @@
 
 - name: Import the ROS repository key
   apt_key:
-    keyserver: hkp://pool.sks-keyservers.net
+    keyserver: hkp://ha.pool.sks-keyservers.net
     state: present
     id: B01FA116
   become: yes

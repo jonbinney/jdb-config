@@ -61,6 +61,11 @@ function lunar()
     source /opt/ros/lunar/setup.bash
 }
 
+function melodic()
+{
+    source /opt/ros/melodic/setup.bash
+}
+
 function dev()
 {
     if [ -e qtcreator-build ]

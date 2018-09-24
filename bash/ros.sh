@@ -66,6 +66,20 @@ function melodic()
     source /opt/ros/melodic/setup.bash
 }
 
+# Switch to a workspace and source the setup.bash
+function cws()
+{
+    cd ~/ws/$1
+    . src/cmake-build-debug/devel/setup.bash
+}
+
+# Switch to a worspace and open CLion
+function clws()
+{
+    cws $1
+    ~/ws/clion-2018.2.1/bin/clion.sh
+}
+
 function dev()
 {
     if [ -e qtcreator-build ]

@@ -1,7 +1,16 @@
-- name: Install git-hub from apt
-  apt:
-    name: git-hub
-    state: latest
-    update_cache: yes
-  become: yes
+# Even on 18.04, the version in apt is ooooold so we install from targball.
+- name: Download and untar hub scripts
+  unarchive:
+    src: https://github.com/github/hub/releases/download/v2.6.0/hub-linux-amd64-2.6.0.tgz
+    dest: /tmp/
+    remote_src: yes
+
+- name: Create local bin directory
+  file:
+    path: ~/config/local/bin
+    state: directory
+    mode: 0750
+
+- name: Locally installing hub scripts
+  command: cp /tmp/hub-linux-amd64-2.6.0/bin/hub ~/config/local/bin/
 

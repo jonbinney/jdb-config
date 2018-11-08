@@ -4,8 +4,6 @@ alias tm="tmux -L tmux_mega -f $HOME/config/tmux/tmux_mega.conf"
 alias rebash="source $HOME/.bashrc"
 alias emacs='emacs -nw'
 
-alias hub=git-hub
-
 alias cdd="cd .."
 alias cddd="cd ../.."
 alias cdddd="cd ../../.."

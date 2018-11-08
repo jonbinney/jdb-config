@@ -1,11 +1,10 @@
-export BASH_LOCAL_DIR=$HOME/config/bash
-export DROPBOX_DIR=$HOME/Dropbox
-
 alias t="unset TMUX && tmux"
 alias tm="tmux -L tmux_mega -f $HOME/config/tmux/tmux_mega.conf"
 
 alias rebash="source $HOME/.bashrc"
 alias emacs='emacs -nw'
+
+alias hub=git-hub
 
 alias cdd="cd .."
 alias cddd="cd ../.."
@@ -15,15 +14,6 @@ alias cdddddd="cd ../../../../.."
 
 export EDITOR=vim
 
-# use vim keybindings for bash shell
-set -o vi
-
-function parse_git_branch_and_add_brackets {
-      git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ \[\1\]/'
-}
-
-PS1="\n\[\033[32m\][\w]\[\033[0m\]\n\[\033[1;36m\]\u@\[\033[32m\]\h\[\033[1;33m\]\$(parse_git_branch_and_add_brackets)-> \[\033[0m\]"
-
 export PATH=$HOME/config/local/bin:/usr/lib/ccache:$PATH
 
 # Hack to make java fonts look better
@@ -32,24 +22,21 @@ export PATH=$HOME/config/local/bin:/usr/lib/ccache:$PATH
 #
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on"
 
-# use vim keybindings in bash
-# set -o vi
-
 # if this variable isn't set properly, tmux won't use 256 colors
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
 # useful functions (should move these into more specific files)
-source ${BASH_LOCAL_DIR}/funcs.sh
+source ${SH_LOCAL_DIR}/funcs.sh
 
 # general ROS stuff
-source ${BASH_LOCAL_DIR}/ros.sh
+source ${SH_LOCAL_DIR}/ros.sh
 
 # workspace management stuff
-source ${BASH_LOCAL_DIR}/ws.sh
+source ${SH_LOCAL_DIR}/ws.sh
 
 # robot specific stuff
-source ${BASH_LOCAL_DIR}/robots.sh
+source ${SH_LOCAL_DIR}/robots.sh
 
 # handy git stuff
-source ${BASH_LOCAL_DIR}/git.sh
+source ${SH_LOCAL_DIR}/git.sh
 

@@ -71,13 +71,14 @@ function cws()
 {
     cd ~/ws/$1
     . src/cmake-build-debug/devel/setup.bash
+    . src/iron_ox/setup.bash
 }
 
 # Switch to a worspace and open CLion
 function clws()
 {
     cws $1
-    ~/ws/clion-2018.2.1/bin/clion.sh
+    ~/ws/clion-2018.2.1/bin/clion.sh ~/ws/$1/src/CMakeLists.txt
 }
 
 function dev()

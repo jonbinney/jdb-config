@@ -1,36 +1,7 @@
-- name: Create local bin directory
-  file:
-    path: ~/config/local/bin
-    state: directory
-    mode: 0750
-
-- name: Create src directory
-  file:
-    path: ~/config/src/
-    state: directory
-    mode: 0750
-
-- name: Download Hub for github
-  git:
-    repo: https://github.com/github/hub.git
-    dest: ~/config/src/hub
-
-- name: Install build dependencies
+- name: Install git-hub from apt
   apt:
-    name={{ item }}
-    state=present
-  with_items:
-    - golang
-    - ruby-dev
+    name: git-hub
+    state: latest
+    update_cache: yes
   become: yes
 
-- name: Build hub
-  shell: make
-  args:
-    chdir: ~/config/src/hub
-
-- name: Copy hub binary to local bin directory
-  copy:
-    src: ~/config/src/hub/bin/hub
-    dest: ~/config/local/bin/
-    mode: 0750

@@ -10,5 +10,9 @@
 
 - lineinfile:
     dest: "{{ ansible_env.HOME }}/.bashrc"
-    line: "source {{ config_root_dir }}/bash/bashrc"
+    line: "source {{ config_root_dir }}/sh/rc.bash"
+
+- lineinfile:
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    line: "source {{ config_root_dir }}/sh/rc.zsh"
 

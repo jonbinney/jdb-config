@@ -70,8 +70,15 @@ function melodic()
 function cws()
 {
     cd ~/ws/$1
-    . src/cmake-build-debug/devel/setup.bash
-    . src/iron_ox/setup.bash
+    if test -n "$ZSH_VERSION"; then
+        echo "Loading zsh setup files"
+        . src/cmake-build-debug/devel/setup.zsh
+        . src/iron_ox/setup.zsh
+    elif test -n "$BASH_VERSION"; then
+        echo "Loading bash setup files"
+        . src/cmake-build-debug/devel/setup.bash
+        . src/iron_ox/setup.bash
+    fi
 }
 
 # Switch to a worspace and open CLion

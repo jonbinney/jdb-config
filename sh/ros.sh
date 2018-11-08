@@ -21,6 +21,12 @@ alias cdi="catkin_make -DCMAKE_BUILD_TYPE=Debug install"
 alias cclean="rm -rf build devel install"
 alias br="bloom-release --rosdistro jade --track jade"
 
+if test -n "$ZSH_VERSION"; then
+    CURRENT_SHELL_SUFFIX=zsh
+else
+    CURRENT_SHELL_SUFFIX=bash
+fi
+
 function radd()
 {
     export ROS_PACKAGE_PATH=$PWD:$ROS_PACKAGE_PATH
@@ -28,57 +34,49 @@ function radd()
 
 function fuerte()
 {
-    source /opt/ros/fuerte/setup.bash
+    source /opt/ros/fuerte/setup.${CURRENT_SHELL_SUFFIX}
 }
 
 function groovy()
 {
-    source /opt/ros/groovy/setup.bash
+    source /opt/ros/groovy/setup.${CURRENT_SHELL_SUFFIX}
 }
 
 function hydro()
 {
-    source /opt/ros/hydro/setup.bash
+    source /opt/ros/hydro/setup.${CURRENT_SHELL_SUFFIX}
 }
 
 function indigo()
 {
-    source /opt/ros/indigo/setup.bash
+    source /opt/ros/indigo/setup.${CURRENT_SHELL_SUFFIX}
 }
 
 function jade()
 {
-    source /opt/ros/indigo/setup.bash
+    source /opt/ros/indigo/setup.${CURRENT_SHELL_SUFFIX}
 }
 
 function kinetic()
 {
-    source /opt/ros/kinetic/setup.bash
+    source /opt/ros/kinetic/setup.${CURRENT_SHELL_SUFFIX}
 }
 
 function lunar()
 {
-    source /opt/ros/lunar/setup.bash
+    source /opt/ros/lunar/setup.${CURRENT_SHELL_SUFFIX}
 }
 
 function melodic()
 {
-    source /opt/ros/melodic/setup.bash
+    source /opt/ros/melodic/setup.${CURRENT_SHELL_SUFFIX}
 }
 
 # Switch to a workspace and source the setup.bash
 function cws()
 {
     cd ~/ws/$1
-    if test -n "$ZSH_VERSION"; then
-        echo "Loading zsh setup files"
-        . src/cmake-build-debug/devel/setup.zsh
-        . src/iron_ox/setup.zsh
-    elif test -n "$BASH_VERSION"; then
-        echo "Loading bash setup files"
-        . src/cmake-build-debug/devel/setup.bash
-        . src/iron_ox/setup.bash
-    fi
+    . src/cmake-build-debug/devel/setup.${CURRENT_SHELL_SUFFIX}
 }
 
 # Switch to a worspace and open CLion
@@ -92,15 +90,15 @@ function dev()
 {
     if [ -e qtcreator-build ]
     then
-      source ./qtcreator-build/devel/setup.bash
+      source ./qtcreator-build/devel/setup.${CURRENT_SHELL_SUFFIX}
     elif [ -e src-build ]
     then
-      source src-build/devel/setup.bash
-    elif [ -e devel_isolated/setup.bash ]
+      source src-build/devel/setup.${CURRENT_SHELL_SUFFIX}
+    elif [ -e devel_isolated/setup.${CURRENT_SHELL_SUFFIX} ]
     then
-      source devel_isolated/setup.bash
+      source devel_isolated/setup.${CURRENT_SHELL_SUFFIX}
     else
-      source ./devel/setup.bash
+      source ./devel/setup.${CURRENT_SHELL_SUFFIX}
     fi
 }
 

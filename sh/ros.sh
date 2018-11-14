@@ -83,7 +83,7 @@ function cws()
 function clws()
 {
     cws $1
-    ~/ws/clion-2018.2.1/bin/clion.sh ~/ws/$1/src/CMakeLists.txt
+    ~/ws/clion-183.4284.40/bin/clion.sh ~/ws/$1/src/CMakeLists.txt &
 }
 
 function dev()

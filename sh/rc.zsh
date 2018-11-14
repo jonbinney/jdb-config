@@ -7,3 +7,12 @@ bindkey -v
 bindkey "^R" history-incremental-search-backward
 
 source ${SH_LOCAL_DIR}/rc.sh
+
+# Bind "." to reload zshrc
+function . {
+    if [[ $# -eq 0 ]]; then
+        builtin . ~/.zshrc
+    else
+        builtin . "$@"
+    fi
+}

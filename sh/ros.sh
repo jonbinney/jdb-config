@@ -76,6 +76,10 @@ function melodic()
 function cws()
 {
     cd ~/ws/$1
+    if [ -e src/iron_ox ]
+    then
+      . src/iron_ox/setup.${CURRENT_SHELL_SUFFIX}
+    fi
     . src/cmake-build-debug/devel/setup.${CURRENT_SHELL_SUFFIX}
 }
 
@@ -83,7 +87,7 @@ function cws()
 function clws()
 {
     cws $1
-    ~/ws/clion-183.4284.40/bin/clion.sh ~/ws/$1/src/CMakeLists.txt &
+    ~/ws/clion-2018.3.1/bin/clion.sh ~/ws/$1/src/CMakeLists.txt &
 }
 
 function dev()

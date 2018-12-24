@@ -1,15 +1,15 @@
 ---
+- name: Import the ROS repository key
+  apt_key:
+      keyserver: hkp://ha.pool.sks-keyservers.net:80
+      state: present
+      id: 421C365BD9FF1F717815A3895523BAEEB01FA116
+  become: yes
+
 - name: Add ROS apt repo
   apt_repository:
     repo: "deb http://packages.ros.org/{{ ros_apt_repo }}/ubuntu {{ ansible_distribution_release }} main"
     state: present
-  become: yes
-
-- name: Import the ROS repository key
-  apt_key:
-    keyserver: hkp://ha.pool.sks-keyservers.net
-    state: present
-    id: B01FA116
   become: yes
 
 - name: Update apt

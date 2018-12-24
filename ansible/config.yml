@@ -5,6 +5,7 @@
 ---
 - hosts: all
   roles:
+      - { role: apt_packages }
       - { role: neovim }
       - { role: neovim_plugins }
       - { role: hub }
@@ -12,33 +13,6 @@
       - { role: kicad }
       - { role: dot_files, tags: [dot_files] }
   tasks:
-    - name: Install handy APT packages
-      apt:
-        name={{ item }}
-        state=present
-      with_items:
-        - ccache
-        - build-essential
-        - ipython
-        - python-scipy
-        - python-matplotlib
-        - scons
-        - vim-nox
-        - mercurial
-        - git
-        - subversion
-        - openssh-server
-        - cmake
-        - python-setuptools
-        - tmux
-        - ruby-dev
-        - xclip
-        - cmake
-        - python-dev
-        - vlc
-        - mosh
-      become: yes
-
     - name: Disable apport (Ubuntu bug notification service)
       lineinfile:
         dest: /etc/default/apport

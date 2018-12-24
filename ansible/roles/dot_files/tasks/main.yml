@@ -15,4 +15,5 @@
 - lineinfile:
     dest: "{{ ansible_env.HOME }}/.zshrc"
     line: "source {{ config_root_dir }}/sh/rc.zsh"
+    create: true
 

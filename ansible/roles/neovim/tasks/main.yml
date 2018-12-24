@@ -1,8 +1,9 @@
 - name: Install packages needed for python support
   apt:
-    name={{ item }}
-    state=present
-  with_items:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
     - python-dev
     - python-pip
     - python3-dev

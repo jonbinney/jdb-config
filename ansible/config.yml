@@ -21,6 +21,6 @@
       become: yes
 
     - name: Use ZSH as the default shell
-      command: "chsh -s /usr/bin/zsh"
+      command: "chsh -s /usr/bin/zsh {{ ansible_user }}"
       become: yes
 

@@ -19,9 +19,10 @@
 
 - name: Install ROS
   apt:
-    name: "{{ item }}"
+    name: "{{ packages }}"
     state: latest
-  with_items:
+  vars:
+    packages:
     - python-rosdep
     - python-rosinstall
     - python-catkin-tools

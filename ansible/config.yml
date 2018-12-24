@@ -19,3 +19,8 @@
         regexp: '^enabled='
         line: 'enabled=0'
       become: yes
+
+    - name: Use ZSH as the default shell
+      command: "chsh -s /usr/bin/zsh"
+      become: yes
+

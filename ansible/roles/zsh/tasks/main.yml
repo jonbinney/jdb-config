@@ -1,0 +1,17 @@
+---
+- name: Use ZSH as the default shell
+  command: "chsh -s /usr/bin/zsh {{ ansible_user }}"
+  become: yes
+
+- name: Create oh-my-zsh config directory
+  file:
+    path: ~/.oh-my-zsh
+    state: directory
+    mode: 0750
+
+- name: Clone oh-my-zsh repo
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: ~/.oh-my-zsh
+    depth: 1
+

@@ -11,6 +11,7 @@
       - { role: hub }
       - { role: ros }
       - { role: kicad }
+      - { role: zsh }
       - { role: dot_files, tags: [dot_files] }
   tasks:
     - name: Disable apport (Ubuntu bug notification service)
@@ -18,9 +19,5 @@
         dest: /etc/default/apport
         regexp: '^enabled='
         line: 'enabled=0'
-      become: yes
-
-    - name: Use ZSH as the default shell
-      command: "chsh -s /usr/bin/zsh {{ ansible_user }}"
       become: yes
 

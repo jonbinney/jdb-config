@@ -17,3 +17,7 @@
     line: "source {{ config_root_dir }}/sh/rc.zsh"
     create: true
 
+- file:
+    src: "{{ config_root_dir }}/clion/.ideavimrc"
+    dest: "{{ ansible_env.HOME }}/.ideavimrc"
+    state: link

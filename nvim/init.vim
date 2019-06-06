@@ -12,7 +12,7 @@ set ai "Auto indent
 set si "Smart indet
 set wrap "Wrap lines
 
-autocmd FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=8
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4
 
 set incsearch "Make search act like search in modern browsers
 

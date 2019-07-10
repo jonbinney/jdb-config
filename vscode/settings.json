@@ -1,0 +1,4 @@
+{
+    "___comment":  "VS Code bypasses my x keybinding remap for capslock, see https://github.com/microsoft/vscode/issues/23991",
+    "keyboard.dispatch": "keyCode"
+}

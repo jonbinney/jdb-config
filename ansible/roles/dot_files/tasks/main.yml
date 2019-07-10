@@ -21,3 +21,8 @@
     src: "{{ config_root_dir }}/clion/.ideavimrc"
     dest: "{{ ansible_env.HOME }}/.ideavimrc"
     state: link
+
+- file:
+    src: "{{ config_root_dir }}/vscode/settings.json"
+    dest: "{{ ansible_env.HOME }}/.config/Code/User/settings.json"
+    state: link

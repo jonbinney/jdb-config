@@ -87,12 +87,15 @@ function cws()
 function clws()
 {
     cws $1
-    ~/ws/clion-2018.3.4/bin/clion.sh ~/ws/$1/src/CMakeLists.txt &
+    clion ~/ws/$1/src/CMakeLists.txt &
 }
 
 function dev()
 {
-    if [ -e qtcreator-build ]
+    if [ -e src/cmake-build-debug ]
+    then
+      source ./src/cmake-build-debug/devel/setup.${CURRENT_SHELL_SUFFIX}
+    elif [ -e qtcreator-build ]
     then
       source ./qtcreator-build/devel/setup.${CURRENT_SHELL_SUFFIX}
     elif [ -e src-build ]

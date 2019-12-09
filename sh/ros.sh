@@ -81,6 +81,8 @@ function cws()
       . src/iron_ox/setup.${CURRENT_SHELL_SUFFIX}
     fi
 
+    dev
+
     if [ -e devel ]
     then
       . devel/setup.${CURRENT_SHELL_SUFFIX}
@@ -93,12 +95,15 @@ function cws()
 function clws()
 {
     cws $1
-    clion ~/ws/$1/src/CMakeLists.txt &
+    clion ~/ws/$1/src &
 }
 
 function dev()
 {
-    if [ -e src/cmake-build-debug ]
+    if [ -e devel ]
+    then
+      source ./devel/setup.${CURRENT_SHELL_SUFFIX}
+    elif [ -e src/cmake-build-debug ]
     then
       source ./src/cmake-build-debug/devel/setup.${CURRENT_SHELL_SUFFIX}
     elif [ -e qtcreator-build ]
@@ -111,7 +116,7 @@ function dev()
     then
       source devel_isolated/setup.${CURRENT_SHELL_SUFFIX}
     else
-      source ./devel/setup.${CURRENT_SHELL_SUFFIX}
+        echo "Could not find a setup file to source"
     fi
 }
 

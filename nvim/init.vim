@@ -29,8 +29,11 @@ set guioptions-=m
 " Remove toolbar from gvim
 set guioptions-=T
 
-" turn syntax highlighting on
+" Turn syntax highlighting on
 syntax on
+
+" Line numbers
+set number
 
 colorscheme kalisi
 set background=dark
@@ -70,9 +73,17 @@ map <C-n> :NERDTreeToggle<CR>
 map <leader>r :NERDTreeFind<cr>
 let g:NERDTreeWinSize = 60
 
+"""""""""""""
+" Tab navigation shortcuts
+""""""""""""""
+nnoremap tn :tabnew<Space>
+nnoremap tk :tabnext<CR>
+nnoremap tj :tabprev<CR>
+nnoremap th :tabfirst<CR>
+nnoremap tl :tablast<CR>
 
 """"""""""""
-" CtrlP
+" CtrlP for finding files.
 """"""""""""
 
 let g:ctrlp_map = '<c-p>'
@@ -99,7 +110,7 @@ au BufNewFile,BufRead *.rs set filetype=rust
 " ROS
 """"""""""""
 
-set makeprg=catkin\ build\ -w\ ..
+set makeprg=catkin\ build\ -w\ ..\ --cmake-args\ -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 
 
 """"""""""""

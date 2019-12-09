@@ -80,7 +80,13 @@ function cws()
     then
       . src/iron_ox/setup.${CURRENT_SHELL_SUFFIX}
     fi
-    . src/cmake-build-debug/devel/setup.${CURRENT_SHELL_SUFFIX}
+
+    if [ -e devel ]
+    then
+      . devel/setup.${CURRENT_SHELL_SUFFIX}
+    else
+      . src/cmake-build-debug/devel/setup.${CURRENT_SHELL_SUFFIX}
+    fi
 }
 
 # Switch to a worspace and open CLion

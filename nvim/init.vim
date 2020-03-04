@@ -72,6 +72,7 @@ cmap w!! w !sudo tee % >/dev/null
 map <C-n> :NERDTreeToggle<CR>
 map <leader>r :NERDTreeFind<cr>
 let g:NERDTreeWinSize = 60
+let NERDTreeIgnore = ['\.pyc$']
 
 """""""""""""
 " Tab navigation shortcuts

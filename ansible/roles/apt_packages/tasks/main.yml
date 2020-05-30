@@ -5,9 +5,9 @@
     packages:
     - ccache
     - build-essential
-    - ipython
-    - python-scipy
-    - python-matplotlib
+    - ipython3
+    - python3-scipy
+    - python3-matplotlib
     - scons
     - vim-nox
     - mercurial
@@ -15,12 +15,12 @@
     - subversion
     - openssh-server
     - cmake
-    - python-setuptools
+    - python3-setuptools
     - tmux
     - ruby-dev
     - xclip
     - cmake
-    - python-dev
+    - python3-dev
     - vlc
     - mosh
     - zsh

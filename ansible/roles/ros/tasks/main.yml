@@ -1,9 +1,9 @@
 ---
 - name: Import the ROS repository key
   apt_key:
-      keyserver: hkp://ha.pool.sks-keyservers.net:80
+      keyserver: hkp://keyserver.ubuntu.com:80
       state: present
-      id: 421C365BD9FF1F717815A3895523BAEEB01FA116
+      id: C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
   become: yes
 
 - name: Add ROS apt repo
@@ -23,10 +23,11 @@
     state: latest
   vars:
     packages:
-    - python-rosdep
-    - python-rosinstall
-    - python-catkin-tools
-    - python-bloom
+    - python3-rosdep
+    - python3-rosinstall
+      # Not yet working on 20.04: https://github.com/catkin/catkin_tools/issues/597
+      # - python3-catkin-tools
+    - python3-bloom
     - "{{ ros_deb }}"
   become: yes
 

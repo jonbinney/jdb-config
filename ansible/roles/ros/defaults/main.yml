@@ -1,5 +1,5 @@
 ---
-# Can be "ros" or "ros-shadow-fixed"
-ros_apt_repo: ros-shadow-fixed
+# Can be "ros" or "ros-testing"
+ros_apt_repo: ros-testing
 rosdep_default_sources_file: /etc/ros/rosdep/sources.list.d/20-default.list
-ros_deb: ros-melodic-desktop-full
+ros_deb: ros-noetic-desktop-full

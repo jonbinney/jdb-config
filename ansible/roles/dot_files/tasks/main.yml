@@ -23,6 +23,11 @@
     state: link
 
 - file:
+    path: "{{ ansible_env.HOME }}/.config/Code/User/"
+    state: directory
+    mode: '0755'
+
+- file:
     src: "{{ config_root_dir }}/vscode/settings.json"
     dest: "{{ ansible_env.HOME }}/.config/Code/User/settings.json"
     state: link

@@ -72,6 +72,11 @@ function melodic()
     source /opt/ros/melodic/setup.${CURRENT_SHELL_SUFFIX}
 }
 
+function noetic()
+{
+    source /opt/ros/noetic/setup.${CURRENT_SHELL_SUFFIX}
+}
+
 # Switch to a workspace and source the setup.bash
 function cws()
 {

@@ -20,3 +20,7 @@ function create_ws()
     export ROS_ENV_LOADER=$ROS_WS/env.sh
 }
 
+function iows()
+{
+    . custom/src/iron_ox/setup.zsh
+}

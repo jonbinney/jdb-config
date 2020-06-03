@@ -24,5 +24,6 @@
     - vlc
     - mosh
     - zsh
+    - gimp
   become: yes
 

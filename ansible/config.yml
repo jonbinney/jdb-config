@@ -8,7 +8,7 @@
       - { role: apt_packages }
       - { role: neovim }
       - { role: neovim_plugins }
-      - { role: hub }
+      - { role: github_cli }
       - { role: ros }
         # - { role: kicad }  (this takes too long to install; removing for now)
       - { role: zsh }

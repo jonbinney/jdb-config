@@ -26,12 +26,3 @@
     repo: https://github.com/ctrlpvim/ctrlp.vim.git
     dest: ~/.config/nvim/bundle/ctrp.vim
 
-- name: Download YouCompleteMe
-  git:
-    repo: git@github.com:Valloric/YouCompleteMe
-    dest: ~/.config/nvim/bundle/YouCompleteMe
-
-- name: Compile YouCompleteMe for C/C++ support
-  shell: ./install.py --clang-completer
-  args:
-    chdir: ~/.config/nvim/bundle/YouCompleteMe

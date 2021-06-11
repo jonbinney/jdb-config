@@ -1,9 +1,0 @@
-# Assumes that you are running from this directory.
-#
-# ansible-playbook -i "localhost," -c local -K update_ansible.yml
-#
----
-- hosts: all
-  roles:
-      - { role: ansible }
-

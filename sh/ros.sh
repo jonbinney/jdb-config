@@ -77,6 +77,11 @@ function noetic()
     source /opt/ros/noetic/setup.${CURRENT_SHELL_SUFFIX}
 }
 
+function foxy()
+{
+    source /opt/ros/foxy/setup.${CURRENT_SHELL_SUFFIX}
+}
+
 # Switch to a workspace and source the setup.bash
 function cws()
 {

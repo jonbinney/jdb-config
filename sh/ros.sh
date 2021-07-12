@@ -82,6 +82,11 @@ function foxy()
     source /opt/ros/foxy/setup.${CURRENT_SHELL_SUFFIX}
 }
 
+function galactic()
+{
+    source /opt/ros/galactic/setup.${CURRENT_SHELL_SUFFIX}
+}
+
 # Switch to a workspace and source the setup.bash
 function cws()
 {

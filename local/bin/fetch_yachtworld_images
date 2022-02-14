@@ -20,7 +20,7 @@ print('Getting images for {}'.format(args.url))
 
 # Yachtworld seems to use a unique ID for each boat. We can parse this
 # from the URL.
-m = re.search(r'([^/]+?)([0-9]+)/', args.url)
+m = re.search(r'([^/]+?)-([0-9]+)/?$', args.url)
 if m is None:
     print('Unable to parse boat id from url', file=sys.stderr)
     sys.exit(1)

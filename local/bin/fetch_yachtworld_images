@@ -1,37 +1,40 @@
 #!/usr/bin/env python3
 import argparse
-from html.parser import HTMLParser
 from pathlib import Path
 import re
 import sys
 import urllib.request
 
-# Pass the URL to the main yachtworld page for the boat as a
-# command line argument.
 command_line_parser = argparse.ArgumentParser(
     description='Download high-res images for a boat on yachtworld.',
     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-command_line_parser.add_argument('url', help='URL to boat on yachtworld.com')
+command_line_parser.add_argument('id', help='URL or boat id')
 command_line_parser.add_argument('--output-dir',
     help='directory into which images will be downloaded',
     default='Downloads')
 args = command_line_parser.parse_args()
-print('Getting images for {}'.format(args.url))
+m = re.match(r'[0-9]+', args.id)
+if m:
+    # User provided the boat id; ues it to construct the URL.
+    boat_id = args.id
+    boat_url = 'https://www.yachtworld.com/yacht/' + boat_id
+else:
+    # Parse the boat id from the provided URL.
+    boat_url = args.id
+    m = re.search(r'[^/]+?-([0-9]+)/?$', boat_url)
+    if m is None:
+        print('Unable to parse boat id from url', file=sys.stderr)
+        sys.exit(1)
+    boat_id = m.groups()[0]
+output_directory = Path.home() / Path(args.output_dir) / boat_id
 
-# Yachtworld seems to use a unique ID for each boat. We can parse this
-# from the URL.
-m = re.search(r'([^/]+?)-([0-9]+)/?$', args.url)
-if m is None:
-    print('Unable to parse boat id from url', file=sys.stderr)
-    sys.exit(1)
-boat_name, boat_id = m.groups()
 print('Boat ID: {}'.format(boat_id))
-output_directory = Path.home() / Path(args.output_dir) / (boat_name + boat_id)
+print('Boat URL: {}'.format(boat_url))
 print('Output directory: {}'.format(output_directory))
 output_directory.mkdir(parents=True, exist_ok=True)
 
 # Download the page
-html_text = urllib.request.urlopen(args.url).read().decode()
+html_text = urllib.request.urlopen(boat_url).read().decode()
 
 # Find and download all images of this boat. There may be pictures of
 # other boats on various parts of the page, so we need to check that

@@ -1,12 +1,17 @@
 {
     "___comment":  "VS Code bypasses my x keybinding remap for capslock, see https://github.com/microsoft/vscode/issues/23991",
     "keyboard.dispatch": "keyCode",
-    "window.zoomLevel": 1,
     "files.associations": {
         ".rosinstall": "yaml"
     },
     "workbench.colorTheme": "Quiet Light",
     "[rust]": {
-        "editor.defaultFormatter": "rust-lang.rust"
-    }
+        "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    },
+    "editor.fontSize": 12,
+    "window.zoomLevel": 1,
+    "terminal.integrated.fontSize": 12,
+    "editor.minimap.enabled": false,
+    "debug.allowBreakpointsEverywhere": true,
+    "editor.inlayHints.enabled": "offUnlessPressed"
 }

@@ -5,7 +5,7 @@
 Install packages we need for setting everything up.
 
 ```bash
-sudo apt-get install git ansible
+sudo apt install git ansible
 ```
 
 Create an ssh key pair.

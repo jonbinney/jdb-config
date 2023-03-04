@@ -8,10 +8,10 @@
       - { role: apt_packages }
       - { role: neovim }
       - { role: neovim_plugins }
-      - { role: github_cli }
-      - { role: ros }
+        # - { role: github_cli }
+        # - { role: ros }
         # - { role: kicad }  (this takes too long to install; removing for now)
-      - { role: zsh }
+        # - { role: zsh }
       - { role: dot_files, tags: [dot_files] }
   tasks:
     - name: Disable apport (Ubuntu bug notification service)

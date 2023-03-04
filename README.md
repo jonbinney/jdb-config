@@ -29,7 +29,6 @@ cd config/ansible
 ansible-playbook -K -i "localhost," -c local config.yml
 ```
 
-Optional: remap CapsLock key to be a second control. Install
-gnome-tweak tool with `sudo apt-get install gnome-tweak-tool`,
-run `gnome-tweaks`, go to `Keyboard & Mouse->Additional Layout Options`
--> Caps Lock behavior. Select "Make Caps Lock an additional Esc".
+Remap CapsLock key to be a second control: run `gnome-tweaks` (installed by ansible playbook
+already), go to `Keyboard & Mouse->Additional Layout Options` -> Caps Lock behavior. Select "Make
+Caps Lock an additional Esc".

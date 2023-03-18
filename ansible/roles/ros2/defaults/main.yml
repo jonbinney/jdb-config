@@ -1,0 +1,4 @@
+---
+rosdep_default_sources_file: /etc/ros/rosdep/sources.list.d/20-default.list
+ros_deb: ros-rolling-desktop
+

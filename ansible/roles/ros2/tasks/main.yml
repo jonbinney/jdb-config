@@ -1,0 +1,36 @@
+---
+- name: Import the ROS2 repository key
+  apt_key:
+      url: https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc
+      state: present
+  become: yes
+
+- name: Add ROS2 apt repo
+  apt_repository:
+    repo: "deb http://packages.ros.org/ros2/ubuntu {{ ansible_distribution_release }} main"
+    state: present
+  become: yes
+
+- name: Install ROS2
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
+  vars:
+    packages:
+    - python3-rosdep
+    - python3-rosinstall
+    - python3-bloom
+    - "{{ ros_deb }}"
+  become: yes
+
+- name: Initialize rosdep
+  shell: rosdep init
+  args:
+    creates: "{{ rosdep_default_sources_file }}"
+  become: yes
+
+- name: Update rosdep
+  become: yes
+  shell: rosdep update
+

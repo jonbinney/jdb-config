@@ -10,6 +10,7 @@
       - { role: neovim_plugins }
         # - { role: github_cli }
         # - { role: ros }
+      - { role: ros2 }
         # - { role: kicad }  (this takes too long to install; removing for now)
         # - { role: zsh }
       - { role: dot_files, tags: [dot_files] }

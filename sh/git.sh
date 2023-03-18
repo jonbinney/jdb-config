@@ -6,9 +6,9 @@ alias gd="git diff"
 alias gp="git push"
 alias gr="git remote"
 
-# Add a git fork (that already exists) as a remote in the
+# Add a github fork (that already exists) as a remote in the
 # current repo.
-function gaf {
+function ghaf {
   if [ -n "$1" ]
   then
     FORK_ORG=$1
@@ -20,5 +20,20 @@ function gaf {
   FORK_URL=git@github.com:${FORK_ORG}/${REPO_NAME}
   echo Creating fork ${FORK_URL}
   git remote add -f ${FORK_ORG} ${FORK_URL}
+}
+
+# Clone a repo from github.
+function ghc {
+  if [ -n "$2" ]
+  then
+    REPO_ORG=$1
+    REPO_NAME=$2
+  else
+    echo "Syntax: $0 <repo_org> <repo_name>"
+    return
+  fi
+  REPO_URL=git@github.com:${REPO_ORG}/${REPO_NAME}
+  echo Cloning ${REPO_URL}
+  git clone ${REPO_URL}
 }
 

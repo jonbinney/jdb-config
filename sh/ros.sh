@@ -87,6 +87,17 @@ function galactic()
     source /opt/ros/galactic/setup.${CURRENT_SHELL_SUFFIX}
 }
 
+function humble()
+{
+    source /opt/ros/humble/setup.${CURRENT_SHELL_SUFFIX}
+}
+
+function rolling()
+{
+    source /opt/ros/rolling/setup.${CURRENT_SHELL_SUFFIX}
+}
+
+
 # Switch to a workspace and source the setup.bash
 function cws()
 {

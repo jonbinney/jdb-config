@@ -21,4 +21,9 @@
         regexp: '^enabled='
         line: 'enabled=0'
       become: yes
+    - name: Adding existing user jbinney to group dialout
+      user:
+        name: jbinney
+        groups: dialout
+        append: yes
 

@@ -28,6 +28,10 @@ function ghc {
   then
     REPO_ORG=$1
     REPO_NAME=$2
+  elif [ -n "$1" ]
+  then
+    REPO_ORG=${GITHUB_USERNAME}
+    REPO_NAME=$1
   else
     echo "Syntax: $0 <repo_org> <repo_name>"
     return

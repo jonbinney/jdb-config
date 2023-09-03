@@ -90,6 +90,7 @@ nnoremap tl :tablast<CR>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = ''
+let g:ctrlp_custom_ignore = 'target' " ignore rust build directory
 
 """"""""""""
 " Line width helpers

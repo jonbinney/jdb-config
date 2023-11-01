@@ -8,6 +8,7 @@
       - { role: apt_packages }
       - { role: neovim }
       - { role: neovim_plugins }
+      - { role: docker }
         # - { role: github_cli }
         # - { role: ros }
         #- { role: ros2 }

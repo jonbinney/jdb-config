@@ -1,0 +1,15 @@
+- name: Install docker
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - docker.io
+  become: yes
+
+- name: Add user jbinney to group docker
+  user:
+    name: jbinney
+    groups: docker
+    append: yes
+  become: yes
+

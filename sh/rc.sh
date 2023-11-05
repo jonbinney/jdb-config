@@ -12,8 +12,6 @@ alias cdddddd="cd ../../../../.."
 
 export EDITOR=vim
 
-export PATH=$HOME/config/local/bin:/usr/lib/ccache:$PATH
-
 # Hack to make java fonts look better
 #
 #   http://anadoxin.org/blog/blog/20140908/fixing-ugly-java-fonts/

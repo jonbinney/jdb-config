@@ -13,5 +13,7 @@
     "terminal.integrated.fontSize": 12,
     "editor.minimap.enabled": false,
     "debug.allowBreakpointsEverywhere": true,
-    "editor.inlayHints.enabled": "offUnlessPressed"
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "cmake.showOptionsMovedNotification": false,
+    "gitlens.graph.minimap.enabled": false
 }

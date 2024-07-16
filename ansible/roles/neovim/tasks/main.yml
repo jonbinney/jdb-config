@@ -11,18 +11,6 @@
     update_cache: yes
   become: yes
 
-- name: Update vi alternatives
-  shell: update-alternatives --config vi
-  become: yes
-
-- name: Update vim alternatives
-  shell: update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60 && update-alternatives --config vim
-  become: yes
-
-- name: Update editor alternatives
-  shell: update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60 && update-alternatives --config editor
-  become: yes
-
 - name: Create nvim config directory
   file:
     path: "~/.config/nvim/"

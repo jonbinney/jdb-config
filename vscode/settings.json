@@ -15,5 +15,12 @@
     "debug.allowBreakpointsEverywhere": true,
     "editor.inlayHints.enabled": "offUnlessPressed",
     "cmake.showOptionsMovedNotification": false,
-    "gitlens.graph.minimap.enabled": false
+    "gitlens.graph.minimap.enabled": false,
+    "cmake.configureOnOpen": true,
+    "remote.autoForwardPortsSource": "hybrid",
+    "dev.containers.cacheVolume": false,
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ]
 }

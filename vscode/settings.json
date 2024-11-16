@@ -8,7 +8,6 @@
     "[rust]": {
         "editor.defaultFormatter": "rust-lang.rust-analyzer"
     },
-    "editor.fontSize": 12,
     "window.zoomLevel": 1,
     "terminal.integrated.fontSize": 12,
     "editor.minimap.enabled": false,
@@ -22,5 +21,12 @@
     "cmake.pinnedCommands": [
         "workbench.action.tasks.configureTaskRunner",
         "workbench.action.tasks.runTask"
-    ]
+    ],
+    "ros.rosSetupScript": "/ws/src/install/setup.sh",
+    "explorer.confirmDragAndDrop": false,
+    "git.openRepositoryInParentFolders": "always",
+    "workbench.startupEditor": "none",
+    "chat.editor.fontSize": 11,
+    "editor.fontSize": 13,
+    "workbench.tree.indent": 20
 }

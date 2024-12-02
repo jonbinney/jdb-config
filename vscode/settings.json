@@ -21,7 +21,7 @@
         "workbench.action.tasks.configureTaskRunner",
         "workbench.action.tasks.runTask"
     ],
-<<<<<<< HEAD
+
     "ros.rosSetupScript": "/ws/src/install/setup.sh",
     "explorer.confirmDragAndDrop": false,
     "git.openRepositoryInParentFolders": "always",
@@ -29,11 +29,15 @@
     "chat.editor.fontSize": 11,
     "editor.fontSize": 13,
     "workbench.tree.indent": 20
-=======
+
     "vim.handleKeys": {
-	    "<C-p>": false,
+	"<C-p>": false,
+	"<C-i>": false,
         "<C-j>": false,
         "<C-b>": false
-    }
->>>>>>> 629f562 (VSCode vim mode tweaks)
+        "<C-f>": false,
+        "<C-k>": false
+    },
+    "workbench.colorTheme": "Default Light+",
+    "security.workspace.trust.untrustedFiles": "open"
 }

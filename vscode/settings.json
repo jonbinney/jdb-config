@@ -28,13 +28,13 @@
     "workbench.startupEditor": "none",
     "chat.editor.fontSize": 11,
     "editor.fontSize": 13,
-    "workbench.tree.indent": 20
+    "workbench.tree.indent": 20,
 
     "vim.handleKeys": {
 	"<C-p>": false,
 	"<C-i>": false,
         "<C-j>": false,
-        "<C-b>": false
+        "<C-b>": false,
         "<C-f>": false,
         "<C-k>": false
     },

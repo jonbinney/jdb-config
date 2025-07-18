@@ -22,6 +22,7 @@
         regexp: '^enabled='
         line: 'enabled=0'
       become: yes
+      ignore_errors: true # This file doesn't exist on mint XFCE edition
     - name: Adding existing user jbinney to group dialout
       user:
         name: jbinney

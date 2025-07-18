@@ -27,7 +27,7 @@
     "git.openRepositoryInParentFolders": "always",
     "workbench.startupEditor": "none",
     "chat.editor.fontSize": 11,
-    "editor.fontSize": 13,
+    "editor.fontSize": 12,
     "workbench.tree.indent": 20,
 
     "vim.handleKeys": {
@@ -39,5 +39,7 @@
         "<C-k>": false
     },
     "workbench.colorTheme": "Default Light+",
-    "security.workspace.trust.untrustedFiles": "open"
+    "security.workspace.trust.untrustedFiles": "open",
+    "comments.thread.confirmOnCollapse": "never",
+    "editor.lineNumbers": "relative"
 }

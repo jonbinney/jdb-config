@@ -41,5 +41,12 @@
     "workbench.colorTheme": "Default Light+",
     "security.workspace.trust.untrustedFiles": "open",
     "comments.thread.confirmOnCollapse": "never",
-    "editor.lineNumbers": "relative"
+    "editor.lineNumbers": "off",
+    "python.defaultInterpreterPath": "/bin/python3",
+    "git.blame.editorDecoration.enabled": true,
+    "git.blame.statusBarItem.enabled": false,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "lldb.dbgconfig": {},
+    "claudeCode.preferredLocation": "panel"
 }

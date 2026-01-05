@@ -1,0 +1,163 @@
+{
+	"settings": {
+		"ruff.enable": true,
+		"ruff.trace.server": "messages",
+		"python.defaultInterpreterPath": "${workspaceFolder:deep_rabbit_hole}/.venv/bin/python",
+		"lldb.displayFormat": "auto",
+		"lldb.showDisassembly": "never",
+		"lldb.dereferencePointers": true,
+		"lldb.consoleMode": "commands",
+		"[rust]": {
+			"editor.formatOnSave": true,
+			"editor.defaultFormatter": "rust-lang.rust-analyzer"
+		}
+	},
+	"folders": [
+		{
+			"name": "rust",
+			"path": "../../ws/deep_rabbit_hole/deep_quoridor/rust"
+		},
+		{
+			"name": "deep_rabbit_hole",
+			"path": "../../ws/deep_rabbit_hole"
+		}
+	],
+	"launch": {
+		"configurations": [
+			{
+				"name": "Train AlphaZero (Multi-process)",
+				"type": "debugpy",
+				"request": "launch",
+				"subProcess": true,
+				"console": "integratedTerminal",
+				"program": "deep_quoridor/src/train_alphazero.py",
+				"args": "-w log_from_workers=false,model_upload_policy=never --board-size=3 --max-walls=0 --max-steps=40 --seed=10 -g 100 -e 10 --num-workers 2 -pg 8 --benchmarks random greedy --benchmarks-t 30 -p batch_size=40,mcts_n=200,replay_buffer_size=1000,save_replay_buffer=always,validation_ratio=0.2,nn_type=resnet,nn_resnet_num_blocks=4,nn_resnet_num_channels=8,nn_mask_training_predictions=true --benchmarks-skip-initial",
+				"justMyCode": true,
+			},
+			{
+				"name": "Debug AlphaZero",
+				"type": "debugpy",
+				"request": "launch",
+				"subProcess": true,
+				"console": "integratedTerminal",
+				"program": "deep_quoridor/src/train_alphazero.py",
+
+				"args": [
+					"--sweep=deep_quoridor/sweep_debug.yaml",
+					"-w=log_from_workers=false,model_upload_policy=always",
+					"--board-size=3",
+					"--max-walls=0",
+					"--max-steps=14",
+					"--seed=10",
+					"-g=1024",
+					"-e=30",
+					"--num-workers=1",
+					"-pg=1",
+					"--benchmarks",
+					"random",
+					"greedy",
+					"simple:nick=simple,branching_factor=999",
+					"--benchmarks-params",
+					"temperature=0",
+					"--benchmarks-t=100",
+					"--benchmarks-skip-initial",
+				],
+				"justMyCode": true,
+			},
+			{
+				"name": "Play Against AlphaZero",
+				"type": "debugpy",
+				"request": "launch",
+				"console": "integratedTerminal",
+				"program": "deep_quoridor/src/play.py",
+				"args": "-N 5 -W 3 -p human alphazero:wandb_alias=best,mcts_n=1000,save_replay_buffer=always,nn_type=resnet, -r pygame",
+				"justMyCode": false
+			},
+			{
+				"name": "Simple vs AlphaZero",
+				"type": "debugpy",
+				"request": "launch",
+				"console": "integratedTerminal",
+				"subProcess": true,
+				"program": "deep_quoridor/src/play.py",
+				"args": "-N 5 -W 3 -p simple alphazero:model_filename=models/alphazero_B5W3_mv1.0_epoch_129.pt,mcts_n=1000,save_replay_buffer=always,nn_type=resnet,",
+				"env": {"USE_NNPACK": "0"},
+				"justMyCode": false
+			},
+			{
+				"name": "Simple vs Simple",
+				"type": "debugpy",
+				"request": "launch",
+				"console": "integratedTerminal",
+				"subProcess": true,
+				"program": "deep_quoridor/src/play.py",
+				"cwd": "${workspaceFolder:deep_rabbit_hole}",
+				"python": "${config:python.defaultInterpreterPath}",
+				"args": [
+					"-N", "3", "-W", "0", "-mx", "40",
+					"-t", "1",
+					"-r", "computationtimes", "arenaresults3", "eloresults", "progressbar",
+					"--num-workers=0",
+					"-p",
+					"simple:nick=s_rust,backend=rust_grid,max_depth=10,heuristic=0,discount_factor=1",
+					"simple:nick=s_numba,discount_factor=1,max_depth=10,heuristic=0",
+					],
+				"env": {"USE_NNPACK": "0", "NUMBA_NUM_THREADS": "2", "RAYON_NUM_THREADS": "2", "NUMBA_DISABLE_JIT": "1"},
+				"envFile": "${workspaceFolder:deep_rabbit_hole}/.env",
+				"justMyCode": false,
+			},
+			{
+				"name": "LLDB: Debug Rust Extension",
+				"type": "lldb",
+				"request": "launch",
+				
+				"program": "${config:python.defaultInterpreterPath}",
+				
+				"args": [
+					"${workspaceFolder:deep_rabbit_hole}/deep_quoridor/src/play.py",
+					"-N", "3", "-W", "0", "-mx", "40",
+					"-t", "1",
+					"-r", "computationtimes", "arenaresults3", "eloresults", "progressbar",
+					"--num-workers=0",
+					"-p",
+					"simple:nick=s_rust,backend=rust,max_depth=10,heuristic=0,discount_factor=1",
+					"simple:nick=s_numba,discount_factor=1,max_depth=10,heuristic=0",
+					],
+				
+				"cwd": "${workspaceFolder:deep_rabbit_hole}",
+				"initCommands": [
+					"command script import ~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/etc/lldb_lookup.py",
+					"command script import ~/config/vscode_workspaces/formatter.py",
+					"type summary add --cascade true --summary-string '${var%V}' -x '^ndarray::ArrayBase<.*>$'",
+					"type summary add --cascade true --summary-string '${var%V}' -x '^ndarray::Array.*<.*>$'",
+					"type summary add --cascade true --summary-string '${var%V}' -x '^ndarray::ArrayView.*<.*>$'",
+				],
+				"sourceLanguages": ["rust"],
+				"envFile": "${workspaceFolder:deep_rabbit_hole}/.env",
+
+				"stopOnEntry": false 
+			},
+			{
+				"name": "Brute force",
+				"type": "debugpy",
+				"request": "launch",
+				"console": "integratedTerminal",
+				"program": "deep_quoridor/src/brute_force.py",
+				"env": {
+					"NUMBA_DISABLE_JIT": "1",
+				},
+				"args": "3 0 20",
+				"justMyCode": false
+			},
+			{
+				"name": "View replay",
+				"type": "debugpy",
+				"request": "launch",
+				"console": "integratedTerminal",
+				"program": "deep_quoridor/src/replay_tool.py",
+				"args": "-r pygame -f replay.yaml -g 14",
+				"justMyCode": false
+			},
+		],
+	},
+}
